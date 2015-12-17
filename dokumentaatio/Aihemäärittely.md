@@ -5,7 +5,7 @@
 
 **Toiminnot:** 
 
-*Merkinnän lisäys
-*Merkinnän muokkaaminen
-*Merkinnän poisto
-*Koko kalenterin tyhjennys
+-Merkinnän lisäys
+-Merkinnän muokkaaminen
+-Merkinnän poisto
+-Koko kalenterin tyhjennys
