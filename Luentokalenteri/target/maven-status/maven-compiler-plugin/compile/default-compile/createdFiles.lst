@@ -1,0 +1,9 @@
+luentokalenteri\domain\komennot\Tyhjenna.class
+luentokalenteri\domain\util\Merkintalista.class
+luentokalenteri\domain\komennot\Poista.class
+luentokalenteri\domain\komennot\Tulosta.class
+luentokalenteri\domain\util\Merkinta.class
+luentokalenteri\domain\komennot\Lisaa.class
+luentokalenteri\sovelluslogiikka\Sovelluslogiikka.class
+luentokalenteri\domain\komennot\Komento.class
+PaaohjelmaTeustaukseen\Main.class

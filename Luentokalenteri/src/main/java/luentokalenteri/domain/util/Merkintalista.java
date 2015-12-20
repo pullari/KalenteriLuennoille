@@ -7,6 +7,7 @@ package luentokalenteri.domain.util;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -21,6 +22,42 @@ public class Merkintalista {
     public Merkintalista(){
         
         this.lista = new HashMap<>();
+    }
+    
+    public Map<String, List<Merkinta>> getMap(){
+        
+        return this.lista;
+    }
+    
+    public void poista(String paiva, String nimi){
+        
+        if(this.lista.keySet().contains(paiva)){
+            
+            poistaJosLoytyyNimella(paiva, nimi);
+        }else{
+            
+            System.out.println("Tarkista päivä");
+        }
+    }
+    
+    private void poistaJosLoytyyNimella(String paiva, String nimi){
+        
+        boolean loytyi = false;
+        Iterator<Merkinta> iteraattori = this.lista.get(paiva).iterator();
+        
+        while(iteraattori.hasNext()){
+            
+            Merkinta merkinta = iteraattori.next();
+            
+            if(merkinta.getNimi().equals(nimi)){
+                
+                iteraattori.remove();
+                loytyi = true;
+            }
+        }
+        if(!loytyi){
+            System.out.println("Tämän nimistä merkintää ei löydy");
+        }
     }
     
     public void lisaa(String paiva, Merkinta lisattava){
@@ -66,7 +103,7 @@ public class Merkintalista {
         
         for (String avain : this.lista.keySet()) {
          
-            palauta += avain + " " + this.lista.get(avain) + "\n";
+            palauta += "\n" + avain + " " + this.lista.get(avain);
         }
         
         return palauta;
