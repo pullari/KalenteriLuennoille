@@ -25,11 +25,11 @@ public class Sovelluslogiikka {
     private List<Komento> komennot;
     private Scanner lukija;
     
-    public Sovelluslogiikka(){
+    public Sovelluslogiikka(Scanner lukija){
         
         this.lista = new Merkintalista();
         this.komennot = new ArrayList<>();
-        this.lukija = new Scanner(System.in);
+        this.lukija = lukija;
     }
     
     public void kaynnista(){

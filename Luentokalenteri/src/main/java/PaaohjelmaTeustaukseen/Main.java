@@ -1,5 +1,6 @@
 package PaaohjelmaTeustaukseen;
 
+import java.util.Scanner;
 import luentokalenteri.domain.util.Merkinta;
 import luentokalenteri.domain.util.Merkintalista;
 import luentokalenteri.sovelluslogiikka.Sovelluslogiikka;
@@ -23,7 +24,7 @@ public class Main {
     public static void main(String[] args) {
         // Main testaamista varten. Ohjelma toimii suoraan käynnistämällä.
         
-        Sovelluslogiikka testi = new Sovelluslogiikka();
+        Sovelluslogiikka testi = new Sovelluslogiikka(new Scanner(System.in));
         testi.kaynnista();
     }
     

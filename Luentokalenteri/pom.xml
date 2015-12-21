@@ -47,9 +47,11 @@
             <configuration>
                 <targetClasses>
                     <param>luentokalenteri.domain.util.*</param>
+                    <param>luentokalenteri.sovelluslogiikka.*</param>
                 </targetClasses>
                 <targetTests>
                     <param>luentokalenteri.domain.util.*</param>
+                    <param>luentokalenteri.sovelluslogiikka.*</param>
                 </targetTests>
             </configuration>
         </plugin>
