@@ -21,7 +21,7 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // Main testaamista varten. Käynnistämisen ja toiminnan pitäisi tässä versiossa olla kunnossa.
+        // Main testaamista varten. Ohjelma toimii suoraan käynnistämällä.
         
         Sovelluslogiikka testi = new Sovelluslogiikka();
         testi.kaynnista();

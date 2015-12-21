@@ -33,6 +33,11 @@ public class Merkintalista {
         }
     }
     
+    public Map<String, List<Merkinta>> getMap(){
+        
+        return this.lista;
+    }
+    
     public void poista(String paiva, String nimi){
 
             Merkinta poistettava = null;
