@@ -4,3 +4,4 @@ Päivämäärä / Käytetyt tunnit / Ajankäytön kohde
 17.12.2015  /  1 tunti  /  Aloitin dokumentaation 
 18.12.2015  /  1 tunti  /  Tein alkuvaiheen luokkakaavion
 20.12.2015 / 3 tuntia / Aloitin toiminnallisuuden ohjelmoinnin
+21.12.2015 / 2 tuntia / Ohjelmaa refaktoroitu ja testejä tehty
