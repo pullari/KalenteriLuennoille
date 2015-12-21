@@ -17,6 +17,6 @@ public class Tyhjenna implements Komento {
     @Override
     public void suorita(Merkintalista lista, Scanner lukija) {
         
-        lista.getMap().clear();
+        lista.tyhjenna();
     }
 }

@@ -22,78 +22,53 @@ public class Merkintalista {
     public Merkintalista(){
         
         this.lista = new HashMap<>();
+        this.alustaLista();
     }
     
-    public Map<String, List<Merkinta>> getMap(){
+    public void tyhjenna(){
         
-        return this.lista;
+        for (String avain : this.lista.keySet()) {
+            
+            this.lista.get(avain).clear();
+        }
     }
     
     public void poista(String paiva, String nimi){
-        
-        if(this.lista.keySet().contains(paiva)){
+
+            Merkinta poistettava = null;
             
-            poistaJosLoytyyNimella(paiva, nimi);
-        }else{
-            
-            System.out.println("Tarkista päivä");
-        }
-    }
-    
-    private void poistaJosLoytyyNimella(String paiva, String nimi){
-        
-        boolean loytyi = false;
-        Iterator<Merkinta> iteraattori = this.lista.get(paiva).iterator();
-        
-        while(iteraattori.hasNext()){
-            
-            Merkinta merkinta = iteraattori.next();
-            
-            if(merkinta.getNimi().equals(nimi)){
-                
-                iteraattori.remove();
-                loytyi = true;
+            for (Merkinta tama : this.lista.get(paiva)) {
+                if(tama.getNimi().equals(nimi)){
+                    
+                    poistettava = tama;
+                }
             }
-        }
-        if(!loytyi){
-            System.out.println("Tämän nimistä merkintää ei löydy");
-        }
+            
+            if(poistettava != null){
+                
+                this.lista.get(paiva).remove(poistettava);
+            }else{
+                
+                System.out.println("Merkintää ei löydy, tarkista syötteet");
+            }
     }
     
     public void lisaa(String paiva, Merkinta lisattava){
         
-        if(oikeaPaiva(paiva) && !this.lista.containsKey(paiva)){
-            
-            uusiLisaysListaan(paiva, lisattava);
-        }else if(oikeaPaiva(paiva)){
-            
+        try{
             this.lista.get(paiva).add(lisattava);
-        }else{
-            
+        }catch(Exception e){
             System.out.println("Tarkista päivä");
         }
     }
     
-    private void uusiLisaysListaan(String paiva, Merkinta lisattava){
-        
-        ArrayList<Merkinta> listaLisattavia = new ArrayList<>();
-        listaLisattavia.add(lisattava);
-        this.lista.put(paiva, listaLisattavia);
-    }
-    
-    private boolean oikeaPaiva(String paiva){
+    private void alustaLista(){
         
         String[] paivat = {"ma", "ti", "ke", "to", "pe"};
-        boolean onko = false;
-        
         for (String tama : paivat) {
             
-            if(paiva.equals(tama)){
-                
-                onko = true;
-            }
+            this.lista.put(tama, new ArrayList<Merkinta>());
         }
-        return onko;
     }
     
     @Override
