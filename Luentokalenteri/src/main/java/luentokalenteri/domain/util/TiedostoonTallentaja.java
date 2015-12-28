@@ -18,10 +18,17 @@ import java.util.Scanner;
  */
 public class TiedostoonTallentaja {
     
+    File tiedosto;
+    
+    public TiedostoonTallentaja(File tiedosto){
+        
+        this.tiedosto = tiedosto;
+    }
+    
     public void tallennaTilanne(Map<String, List<Merkinta>> tallennettava){
         
         try{
-            FileWriter tallentaja = new FileWriter("src/main/java/luentokalenteri/domain/util/testausta.txt");
+            FileWriter tallentaja = new FileWriter(this.tiedosto);
             
             for (String avain : tallennettava.keySet()) {
                 kokoaJaTallennaMerkinnat(tallennettava, avain, tallentaja);
@@ -38,12 +45,12 @@ public class TiedostoonTallentaja {
         
         for (Merkinta merkinta : tallennettava.get(avain)) {
                     
-            String tiedostoon = kokoaMerkinta(avain, merkinta);
+            String tiedostoon = kokoaTallennusMuoto(avain, merkinta);
             tallentaja.write(tiedostoon);
         }
     }
     
-    private String kokoaMerkinta(String paiva, Merkinta merkinta){
+    private String kokoaTallennusMuoto(String paiva, Merkinta merkinta){
         
         return paiva + ";" + merkinta.getNimi() + ";" + merkinta.getAika() + "\n";
     }

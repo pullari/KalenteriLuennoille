@@ -6,6 +6,7 @@
 package luentokalenteri.domain.util;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,16 +21,9 @@ public class TiedostonLukija {
     private Scanner lukija;
     private File tiedosto;
     
-    public TiedostonLukija() {
+    public TiedostonLukija(File tiedosto) throws IOException{
         
-        try{
-            
-            tiedosto = new File("src/main/java/luentokalenteri/domain/util/testausta.txt");
-            lukija = new Scanner(tiedosto);
-        }catch(Exception e){
-            
-            System.out.println("Virhe luettaessa tiedostoa");
-        }
+        lukija = new Scanner(tiedosto);
     }
     
     public void puraTallennetut(Map<String, List<Merkinta>> puraTahan){

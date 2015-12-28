@@ -1,3 +1,5 @@
+luentokalenteri\domain\util\TiedostoonTallentajaTest.class
+luentokalenteri\domain\util\TiedostonLukijaTest.class
+luentokalenteri\domain\util\MerkintaTest.class
 luentokalenteri\domain\util\MerkintalistaTest.class
 luentokalenteri\sovelluslogiikka\SovelluslogiikkaTest.class
-luentokalenteri\domain\util\MerkintaTest.class

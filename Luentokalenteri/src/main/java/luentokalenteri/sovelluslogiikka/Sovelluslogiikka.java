@@ -5,6 +5,7 @@
  */
 package luentokalenteri.sovelluslogiikka;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -34,8 +35,20 @@ public class Sovelluslogiikka {
         this.lista = new Merkintalista();
         this.komennot = new ArrayList<>();
         this.lukija = lukija;
-        this.tiedostonLukija = new TiedostonLukija();
-        this.tallentaja = new TiedostoonTallentaja();
+        alustaTiedostonLukijaJaTallentaja();
+    }
+    
+    private void alustaTiedostonLukijaJaTallentaja(){
+        
+        try{
+            File tiedosto = new File("src/main/java/luentokalenteri/domain/util/testausta.txt");
+            this.tiedostonLukija = new TiedostonLukija(tiedosto);
+            this.tallentaja = new TiedostoonTallentaja(tiedosto);
+            
+        }catch(Exception e){
+            
+            System.out.println("Virhe! Tarkista tallnennustiedoston olemassaolo");
+        }
     }
     
     public void kaynnista(){
