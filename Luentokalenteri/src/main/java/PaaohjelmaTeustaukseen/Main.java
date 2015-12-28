@@ -1,8 +1,10 @@
 package PaaohjelmaTeustaukseen;
 
+import java.io.File;
 import java.util.Scanner;
 import luentokalenteri.domain.util.Merkinta;
 import luentokalenteri.domain.util.Merkintalista;
+import luentokalenteri.domain.util.TiedostonLukija;
 import luentokalenteri.sovelluslogiikka.Sovelluslogiikka;
 
 /*
@@ -27,5 +29,4 @@ public class Main {
         Sovelluslogiikka testi = new Sovelluslogiikka(new Scanner(System.in));
         testi.kaynnista();
     }
-    
 }

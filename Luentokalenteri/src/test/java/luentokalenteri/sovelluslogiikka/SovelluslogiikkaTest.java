@@ -45,12 +45,12 @@ public class SovelluslogiikkaTest {
     @Test
     public void poistoToimii(){
         
-        String syote = kasaa("1", "ma", "OTM", "12-14", "2", "ma", "OTM", "4","x");
+        String syote = kasaa("1", "ma", "Testi", "10-14", "2", "ma", "Testi", "4","x");
         Sovelluslogiikka logiikka = new Sovelluslogiikka(new Scanner(syote));
         logiikka.kaynnista();
         
         String tulos = tulosvirta.toString();
-        assertFalse(tulos.contains("OTM 12-14"));
+        assertFalse(tulos.contains("Testi 10-14"));
     }
 
     @Test
