@@ -1,11 +1,12 @@
-luentokalenteri\domain\util\TiedostoonTallentaja.class
 luentokalenteri\domain\komennot\Tyhjenna.class
-luentokalenteri\domain\util\Merkintalista.class
 luentokalenteri\domain\komennot\Poista.class
 luentokalenteri\domain\komennot\Tulosta.class
-luentokalenteri\domain\util\Merkinta.class
 luentokalenteri\domain\komennot\Lisaa.class
+luentokalenteri\domain\lista\Merkinta.class
+luentokalenteri\kayttojarjestelma\tekstiKayttojarjestelma.class
 luentokalenteri\sovelluslogiikka\Sovelluslogiikka.class
 luentokalenteri\domain\komennot\Komento.class
+luentokalenteri\domain\tiedostonkasittelija\TiedostonLukija.class
 PaaohjelmaTeustaukseen\Main.class
-luentokalenteri\domain\util\TiedostonLukija.class
+luentokalenteri\domain\lista\Merkintalista.class
+luentokalenteri\domain\tiedostonkasittelija\TiedostoonTallentaja.class

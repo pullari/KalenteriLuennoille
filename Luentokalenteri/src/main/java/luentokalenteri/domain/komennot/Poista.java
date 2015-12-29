@@ -6,8 +6,8 @@
 package luentokalenteri.domain.komennot;
 
 import java.util.Scanner;
-import luentokalenteri.domain.util.Merkinta;
-import luentokalenteri.domain.util.Merkintalista;
+import luentokalenteri.domain.lista.Merkinta;
+import luentokalenteri.domain.lista.Merkintalista;
 
 /**
  *
@@ -16,13 +16,13 @@ import luentokalenteri.domain.util.Merkintalista;
 public class Poista implements Komento {
     
     @Override
-    public void suorita(Merkintalista lista, Scanner lukija) {
+    public boolean suorita(Merkintalista lista, Scanner lukija) {
         
         System.out.print("Päivä (ma, ti, ke, to, pe): ");
         String paiva = lukija.nextLine();
         System.out.print("Nimi: ");
         String nimi = lukija.nextLine();
         
-        lista.poista(paiva, nimi);
+        return lista.poista(paiva, nimi);
     }
 }

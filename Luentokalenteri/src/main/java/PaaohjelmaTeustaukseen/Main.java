@@ -2,9 +2,10 @@ package PaaohjelmaTeustaukseen;
 
 import java.io.File;
 import java.util.Scanner;
-import luentokalenteri.domain.util.Merkinta;
-import luentokalenteri.domain.util.Merkintalista;
-import luentokalenteri.domain.util.TiedostonLukija;
+import luentokalenteri.domain.lista.Merkinta;
+import luentokalenteri.domain.lista.Merkintalista;
+import luentokalenteri.domain.tiedostonkasittelija.TiedostonLukija;
+import luentokalenteri.kayttojarjestelma.tekstiKayttojarjestelma;
 import luentokalenteri.sovelluslogiikka.Sovelluslogiikka;
 
 /*
@@ -26,7 +27,9 @@ public class Main {
     public static void main(String[] args) {
         // Main testaamista varten. Ohjelma toimii suoraan käynnistämällä.
         
-        Sovelluslogiikka testi = new Sovelluslogiikka(new Scanner(System.in));
-        testi.kaynnista();
+//        Sovelluslogiikka testi = new Sovelluslogiikka(new Scanner(System.in));
+//        testi.kaynnista();
+        tekstiKayttojarjestelma kayttis = new tekstiKayttojarjestelma(new Scanner(System.in));
+        kayttis.suorita();
     }
 }

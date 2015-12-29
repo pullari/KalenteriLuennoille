@@ -6,6 +6,7 @@
 package luentokalenteri.sovelluslogiikka;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -14,9 +15,9 @@ import luentokalenteri.domain.komennot.Lisaa;
 import luentokalenteri.domain.komennot.Poista;
 import luentokalenteri.domain.komennot.Tulosta;
 import luentokalenteri.domain.komennot.Tyhjenna;
-import luentokalenteri.domain.util.Merkintalista;
-import luentokalenteri.domain.util.TiedostonLukija;
-import luentokalenteri.domain.util.TiedostoonTallentaja;
+import luentokalenteri.domain.lista.Merkintalista;
+import luentokalenteri.domain.tiedostonkasittelija.TiedostonLukija;
+import luentokalenteri.domain.tiedostonkasittelija.TiedostoonTallentaja;
 
 /**
  *
@@ -26,64 +27,33 @@ public class Sovelluslogiikka {
     
     private Merkintalista lista;
     private List<Komento> komennot;
-    private Scanner lukija;
     private TiedostonLukija tiedostonLukija;
     private TiedostoonTallentaja tallentaja;
     
-    public Sovelluslogiikka(Scanner lukija){
+    private String tiedostonNimi;     //TESTAAMISEN HELPOTTAMISEKSI
+    
+    public Sovelluslogiikka(String nimi){
         
+        this.tiedostonNimi = nimi;
         this.lista = new Merkintalista();
         this.komennot = new ArrayList<>();
-        this.lukija = lukija;
         alustaTiedostonLukijaJaTallentaja();
-    }
-    
-    private void alustaTiedostonLukijaJaTallentaja(){
-        
-        try{
-            File tiedosto = new File("src/main/java/luentokalenteri/domain/util/testausta.txt");
-            this.tiedostonLukija = new TiedostonLukija(tiedosto);
-            this.tallentaja = new TiedostoonTallentaja(tiedosto);
-            
-        }catch(Exception e){
-            
-            System.out.println("Virhe! Tarkista tallnennustiedoston olemassaolo");
-        }
-    }
-    
-    public void kaynnista(){
-        
         alustaKomennot();
-        lueTallennetutMerkinnatJaTulostaOhjeet();
-        
-        while(true){
-            String komennonIndeksi = pyydaKomento();
-            
-            if(komennonIndeksi.equals("x")){
-                
-                tallentaja.tallennaTilanne(this.lista.getMap());
-                break;
-            }else{
-                
-                try{
-                    suoritaKomento(Integer.parseInt(komennonIndeksi));
-                }catch(Exception e){
-                    System.out.println("Virheellinen komento, anna uusi");
-                }
-            }
-        }
     }
     
-    private void suoritaKomento(int indeksi){
+    public void tallennaTila(){
         
-        this.komennot.get(indeksi - 1).suorita(this.lista, this.lukija);
+        tallentaja.tallennaTilanne(this.lista.getMap());
     }
     
-    private String pyydaKomento(){
+    public void puraTiedosto(){
         
-        System.out.println("");
-        System.out.print("Komento: ");
-        return this.lukija.nextLine();
+        this.tiedostonLukija.puraTallennetut(this.lista.getMap());
+    }
+    
+    public boolean suoritaKomento(int indeksi, Scanner lukija){
+        
+        return this.komennot.get(indeksi - 1).suorita(this.lista, lukija);
     }
     
     private void alustaKomennot(){
@@ -99,9 +69,16 @@ public class Sovelluslogiikka {
         this.komennot.add(neljas);
     }
     
-    private void lueTallennetutMerkinnatJaTulostaOhjeet(){
+    private void alustaTiedostonLukijaJaTallentaja() {
         
-        System.out.println("1 lisää uusi merkintä || 2 poista merkintä || 3 tyhjennä kaikki || 4 tulosta lista || x lopettaa");
-        this.tiedostonLukija.puraTallennetut(this.lista.getMap());
+        try{
+            File tiedosto = new File(this.tiedostonNimi);
+            this.tiedostonLukija = new TiedostonLukija(tiedosto);
+            this.tallentaja = new TiedostoonTallentaja(tiedosto);
+            
+        }catch(Exception e){
+            
+            System.out.println("Virhe! Tarkista tallnennustiedoston olemassaolo");
+        }
     }
 }

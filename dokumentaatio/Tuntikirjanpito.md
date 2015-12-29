@@ -7,3 +7,4 @@ Päivämäärä / Käytetyt tunnit / Ajankäytön kohde
 * 21.12.2015 / 4 tuntia / Ohjelmaa refaktoroitu ja testejä tehty
 * 27.12.2015 / 2 tuntia / Aloitin katselmoinnin ja otin nootteja
 * 28.12.2015 / 6 tuntia / Merkinnät tallentuu ohjelmaan ja katselmoinnin jatko. Myös lisää testejä ja refaktorointia
+* 29.12.2015 / 4 tuntia / Refaktoroitu sovelluslogiikkaa poistaen lähes kaikki tulostus. Lisätty testejä.

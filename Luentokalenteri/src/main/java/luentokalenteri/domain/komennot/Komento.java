@@ -6,8 +6,8 @@
 package luentokalenteri.domain.komennot;
 
 import java.util.Scanner;
-import luentokalenteri.domain.util.Merkintalista;
-import luentokalenteri.domain.util.TiedostoonTallentaja;
+import luentokalenteri.domain.lista.Merkintalista;
+import luentokalenteri.domain.tiedostonkasittelija.TiedostoonTallentaja;
 
 /**
  *
@@ -15,5 +15,5 @@ import luentokalenteri.domain.util.TiedostoonTallentaja;
  */
 public interface Komento {
     
-    public void suorita(Merkintalista lista, Scanner lukija);
+    public boolean suorita(Merkintalista lista, Scanner lukija);
 }

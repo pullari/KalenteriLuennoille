@@ -6,7 +6,7 @@
 package luentokalenteri.domain.komennot;
 
 import java.util.Scanner;
-import luentokalenteri.domain.util.Merkintalista;
+import luentokalenteri.domain.lista.Merkintalista;
 
 /**
  *
@@ -15,8 +15,9 @@ import luentokalenteri.domain.util.Merkintalista;
 public class Tulosta implements Komento {
 
     @Override
-    public void suorita(Merkintalista lista, Scanner lukija) {
+    public boolean suorita(Merkintalista lista, Scanner lukija) {
         
         System.out.println(lista);
+        return true;
     }
 }
