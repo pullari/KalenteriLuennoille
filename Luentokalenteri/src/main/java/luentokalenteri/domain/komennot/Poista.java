@@ -16,13 +16,8 @@ import luentokalenteri.domain.lista.Merkintalista;
 public class Poista implements Komento {
     
     @Override
-    public boolean suorita(Merkintalista lista, Scanner lukija) {
+    public boolean suorita(Merkintalista lista, String... arg) {
         
-        System.out.print("Päivä (ma, ti, ke, to, pe): ");
-        String paiva = lukija.nextLine();
-        System.out.print("Nimi: ");
-        String nimi = lukija.nextLine();
-        
-        return lista.poista(paiva, nimi);
+        return lista.poista(arg[0], arg[1]);
     }
 }

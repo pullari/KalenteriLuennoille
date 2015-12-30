@@ -15,5 +15,5 @@ import luentokalenteri.domain.tiedostonkasittelija.TiedostoonTallentaja;
  */
 public interface Komento {
     
-    public boolean suorita(Merkintalista lista, Scanner lukija);
+    public boolean suorita(Merkintalista lista, String... tama);
 }

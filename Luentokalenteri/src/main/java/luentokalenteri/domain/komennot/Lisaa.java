@@ -16,16 +16,46 @@ import luentokalenteri.domain.lista.Merkintalista;
 public class Lisaa implements Komento {
 
     @Override
-    public boolean suorita(Merkintalista lista, Scanner lukija) {
+    public boolean suorita(Merkintalista lista, String... arg) {
         
-        System.out.print("Päivä (ma, ti, ke, to, pe): ");
-        String paiva = lukija.nextLine();
-        System.out.print("Nimi: ");
-        String nimi = lukija.nextLine();
-        System.out.print("Aika (Esim. 12-14 tai 8-9): ");
-        String aika = lukija.nextLine();
+        if(!tarkistaAika(arg[2])){
+            
+            return false;
+        }else{
+            Merkinta lisattava = new Merkinta(arg[1], arg[2]);
+            return lista.lisaa(arg[0], lisattava);
+        }
+    }
+    
+    private boolean tarkistaAika(String aika){
         
-        Merkinta lisattava = new Merkinta(nimi, aika);
-        return lista.lisaa(paiva, lisattava);
+        if(tarkistaMuoto(aika)){
+            
+            String[] osat = aika.split("-");
+            int eka = Integer.parseInt(osat[0]);
+            int toka = Integer.parseInt(osat[1]);
+            
+            if(eka >= 8 && toka <= 20){
+
+                return true;
+            }
+            return false;
+        }else{
+            
+            return false;
+        }
+    }
+    
+    private boolean tarkistaMuoto(String tama){
+        
+        try{
+            String[] osat = tama.split("-");
+            int eka = Integer.parseInt(osat[0]);
+            int toka = Integer.parseInt(osat[1]);
+            return true;
+            
+        }catch(Exception e){
+            return false;
+        }
     }
 }

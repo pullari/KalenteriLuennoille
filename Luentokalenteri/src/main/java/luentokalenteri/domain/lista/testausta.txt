@@ -1,3 +1,4 @@
 ma;OTM;12-14
-ma;OTM;12-14
-ma;Luento;8-9
+pe;Luento;17-20
+pe;OHJA;11-14
+ke;Ruotsi;11-19

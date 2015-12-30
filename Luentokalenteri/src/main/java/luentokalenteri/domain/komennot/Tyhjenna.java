@@ -15,7 +15,7 @@ import luentokalenteri.domain.lista.Merkintalista;
 public class Tyhjenna implements Komento {
 
     @Override
-    public boolean suorita(Merkintalista lista, Scanner lukija) {
+    public boolean suorita(Merkintalista lista, String... arg) {
         
         return lista.tyhjenna();
     }

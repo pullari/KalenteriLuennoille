@@ -8,3 +8,4 @@ Päivämäärä / Käytetyt tunnit / Ajankäytön kohde
 * 27.12.2015 / 2 tuntia / Aloitin katselmoinnin ja otin nootteja
 * 28.12.2015 / 6 tuntia / Merkinnät tallentuu ohjelmaan ja katselmoinnin jatko. Myös lisää testejä ja refaktorointia
 * 29.12.2015 / 4 tuntia / Refaktoroitu sovelluslogiikkaa poistaen lähes kaikki tulostus. Lisätty testejä.
+* 30.12.2015 / 7 tuntia / NetBeans GUI Builder harjoittelua ja ensimmäinen graafinen käyttöliittymä valmiiksi

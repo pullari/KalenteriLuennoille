@@ -41,6 +41,16 @@ public class Sovelluslogiikka {
         alustaKomennot();
     }
     
+    public Merkintalista getLista(){
+        
+        return this.lista;
+    }
+    
+    public String tulosta(){
+        
+        return lista.toString();
+    }
+    
     public void tallennaTila(){
         
         tallentaja.tallennaTilanne(this.lista.getMap());
@@ -51,9 +61,9 @@ public class Sovelluslogiikka {
         this.tiedostonLukija.puraTallennetut(this.lista.getMap());
     }
     
-    public boolean suoritaKomento(int indeksi, Scanner lukija){
+    public boolean suoritaKomento(int indeksi, String... arg){
         
-        return this.komennot.get(indeksi - 1).suorita(this.lista, lukija);
+        return this.komennot.get(indeksi - 1).suorita(this.lista, arg);
     }
     
     private void alustaKomennot(){

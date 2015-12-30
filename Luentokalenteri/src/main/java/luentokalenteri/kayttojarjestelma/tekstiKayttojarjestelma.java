@@ -58,7 +58,7 @@ public class tekstiKayttojarjestelma {
     private void suoritaKomento(String komento){
         
         try{
-            boolean tama = logiikka.suoritaKomento(Integer.parseInt(komento), this.lukija);
+            boolean tama = logiikka.suoritaKomento(Integer.parseInt(komento), "joo");
             tarkistaOnnistuikoOperaatio(tama);
             
         }catch(Exception e){

@@ -5,6 +5,7 @@ import java.util.Scanner;
 import luentokalenteri.domain.lista.Merkinta;
 import luentokalenteri.domain.lista.Merkintalista;
 import luentokalenteri.domain.tiedostonkasittelija.TiedostonLukija;
+import luentokalenteri.kayttojarjestelma.KalenteriGUI;
 import luentokalenteri.kayttojarjestelma.tekstiKayttojarjestelma;
 import luentokalenteri.sovelluslogiikka.Sovelluslogiikka;
 
@@ -27,9 +28,11 @@ public class Main {
     public static void main(String[] args) {
         // Main testaamista varten. Ohjelma toimii suoraan käynnistämällä.
         
-//        Sovelluslogiikka testi = new Sovelluslogiikka(new Scanner(System.in));
-//        testi.kaynnista();
-        tekstiKayttojarjestelma kayttis = new tekstiKayttojarjestelma(new Scanner(System.in));
-        kayttis.suorita();
+        KalenteriGUI kayttis = new KalenteriGUI();
+        kayttis.run();
+
+//        tekstiKayttojarjestelma kayttis = new tekstiKayttojarjestelma(new Scanner(System.in));
+//        kayttis.suorita();
+
     }
 }

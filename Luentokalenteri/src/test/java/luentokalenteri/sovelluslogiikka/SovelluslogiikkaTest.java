@@ -59,8 +59,8 @@ public class SovelluslogiikkaTest {
         
         alustaLista();
         
-        String syote = kasaa("ti", "OTM", "12-14");
-        assertTrue(testaa.suoritaKomento(1, new Scanner(syote)));
+        String[] syote = {"ti", "OTM", "12-14"};
+        assertTrue(testaa.suoritaKomento(1, syote));
     }
     
     @Test
@@ -68,8 +68,8 @@ public class SovelluslogiikkaTest {
         
         alustaLista();
         
-        String syote = kasaa("123", "OTM", "12-14");
-        assertFalse(testaa.suoritaKomento(1, new Scanner(syote)));
+        String syote[] = {"123", "OTM", "12-14"};
+        assertFalse(testaa.suoritaKomento(1, syote));
     }
     
     @Test
@@ -77,8 +77,8 @@ public class SovelluslogiikkaTest {
         
         alustaLista();
         
-        String syote = kasaa("ti", "OTM", "12-14");
-        testaa.suoritaKomento(1, new Scanner(syote));
+        String[] syote = {"ti", "OTM", "12-14"};
+        testaa.suoritaKomento(1, syote);
         testaa.tallennaTila();
         
         alustaLista();
@@ -92,8 +92,8 @@ public class SovelluslogiikkaTest {
         
         alustaLista();
         
-        String syote = kasaa("ke", "Luento", "12-14");
-        testaa.suoritaKomento(1, new Scanner(syote));
+        String[] syote = {"ke", "Luento", "12-14"};
+        testaa.suoritaKomento(1, syote);
         testaa.tallennaTila();
         
         alustaLista();
@@ -110,7 +110,7 @@ public class SovelluslogiikkaTest {
         
         String syote = kasaa("turha");
         purkuaVarten.puraTiedosto();
-        purkuaVarten.suoritaKomento(4, new Scanner(syote));
+        purkuaVarten.suoritaKomento(4, syote);
         
         String tulos = tulosvirta.toString();
         System.out.println(tulos);
@@ -125,7 +125,7 @@ public class SovelluslogiikkaTest {
         alustaLista();
         
         String syote = kasaa("turha");
-        purkuaVarten.suoritaKomento(4, new Scanner(syote));
+        purkuaVarten.suoritaKomento(4, syote);
         
         String tulos = tulosvirta.toString();
         System.out.println(tulos);
