@@ -63,10 +63,10 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase classname="luentokalenteri.sovelluslogiikka.SovelluslogiikkaTest" name="komentoEiToimiVaarillaSyotteilla" time="0.007"/>
+  <testcase classname="luentokalenteri.sovelluslogiikka.SovelluslogiikkaTest" name="komentoEiToimiVaarillaSyotteilla" time="0.008"/>
   <testcase classname="luentokalenteri.sovelluslogiikka.SovelluslogiikkaTest" name="purkuToimii" time="0.001"/>
-  <testcase classname="luentokalenteri.sovelluslogiikka.SovelluslogiikkaTest" name="purkamattaEiToimi" time="0.001"/>
+  <testcase classname="luentokalenteri.sovelluslogiikka.SovelluslogiikkaTest" name="purkamattaEiToimi" time="0"/>
   <testcase classname="luentokalenteri.sovelluslogiikka.SovelluslogiikkaTest" name="tallennusToimiiViela" time="0.001"/>
   <testcase classname="luentokalenteri.sovelluslogiikka.SovelluslogiikkaTest" name="tallennusToimii" time="0.001"/>
-  <testcase classname="luentokalenteri.sovelluslogiikka.SovelluslogiikkaTest" name="komentoToimiiHyvillaSyotteilla" time="0"/>
+  <testcase classname="luentokalenteri.sovelluslogiikka.SovelluslogiikkaTest" name="komentoToimiiHyvillaSyotteilla" time="0.001"/>
 </testsuite>

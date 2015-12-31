@@ -1,4 +1,5 @@
 ma;OTM;12-14
+ti;Maatiikka;9-12
 pe;Luento;17-20
 pe;OHJA;11-14
 ke;Ruotsi;11-19

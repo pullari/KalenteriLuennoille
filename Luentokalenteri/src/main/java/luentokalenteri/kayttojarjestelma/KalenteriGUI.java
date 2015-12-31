@@ -260,90 +260,23 @@ public class KalenteriGUI extends javax.swing.JFrame implements Runnable{
             
             Component cell = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
             Merkintalista tulostettavat = logiikka.getLista();
-            Map<String, List<Merkinta>> tulosta = tulostettavat.getMap();
+            Map<String, List<Merkinta>> listaTulostettavista = tulostettavat.getMap();
+            String[] paivat = {"ma", "ti", "ke", "to", "pe"};
             
-            if(column == 1){
+            for (int i = 1; i <= 5; i++) {
                 
-                ArrayList<Integer> varjattavat = new ArrayList<>();
-                
-                for (Merkinta tama : tulosta.get("ma")) {
+                if(column == i){
+                    ArrayList<Integer> varjattavat = new ArrayList<>();
                     
-                    lisaaAjatListaan(tama, varjattavat);
-                }
-                
-                if(varjattavat.contains(row)){
-                    cell.setBackground(Color.red);
-                    
-                }else{
-                    cell.setBackground(Color.white);
-                }
-            }
-            
-            if(column == 2){
-                
-                ArrayList<Integer> varjattavat = new ArrayList<>();
-                
-                for (Merkinta tama : tulosta.get("ti")) {
-                    
-                    lisaaAjatListaan(tama, varjattavat);
-                }
-                
-                if(varjattavat.contains(row)){
-                    cell.setBackground(Color.red);
-                    
-                }else{
-                    cell.setBackground(Color.white);
-                }
-            }
-            
-            if(column == 3){
-                
-                ArrayList<Integer> varjattavat = new ArrayList<>();
-                
-                for (Merkinta tama : tulosta.get("ke")) {
-                    
-                    lisaaAjatListaan(tama, varjattavat);
-                }
-                
-                if(varjattavat.contains(row)){
-                    cell.setBackground(Color.red);
-                    
-                }else{
-                    cell.setBackground(Color.white);
-                }
-            }
-            
-            if(column == 4){
-                
-                ArrayList<Integer> varjattavat = new ArrayList<>();
-                
-                for (Merkinta tama : tulosta.get("to")) {
-                    
-                    lisaaAjatListaan(tama, varjattavat);
-                }
-                
-                if(varjattavat.contains(row)){
-                    cell.setBackground(Color.red);
-                    
-                }else{
-                    cell.setBackground(Color.white);
-                }
-            }
-            
-            if(column == 5){
-                
-                ArrayList<Integer> varjattavat = new ArrayList<>();
-                
-                for (Merkinta tama : tulosta.get("pe")) {
-                    
-                    lisaaAjatListaan(tama, varjattavat);
-                }
-                
-                if(varjattavat.contains(row)){
-                    cell.setBackground(Color.red);
-                    
-                }else{
-                    cell.setBackground(Color.white);
+                    for (Merkinta tama : listaTulostettavista.get(paivat[i - 1])) {
+                        lisaaAjatListaan(tama, varjattavat);
+                    }
+                    if(varjattavat.contains(row)){
+                        cell.setBackground(Color.red);
+
+                    }else{
+                        cell.setBackground(Color.white);
+                    }
                 }
             }
             return cell;
