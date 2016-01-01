@@ -12,8 +12,9 @@ import java.util.List;
 import java.util.Map;
 
 /**
- *
- * @author Pullis
+ * Luokka käsittelee merkintöjä Mapilla, jonka avaimina toimii päivät
+ * @author Pullari
+ * 
  */
 public class Merkintalista {
     
@@ -24,6 +25,12 @@ public class Merkintalista {
         this.lista = new HashMap<>();
         this.alustaLista();
     }
+    
+    /**
+     * Metodi tyhjentää listan kaikista merkinnöistä
+     * 
+     * @return palauttaa aina true, koska operaatio ei voi epäonnistua
+     */
     
     public boolean tyhjenna(){
         
@@ -38,6 +45,13 @@ public class Merkintalista {
         
         return this.lista;
     }
+    
+    /**
+     * 
+     * @param paiva Päivä josta poistetaan merkintää
+     * @param nimi Poistettavan merkinnän nimi
+     * @return Onnistuiko operaatio
+     */
     
     public boolean poista(String paiva, String nimi){
 
@@ -59,6 +73,14 @@ public class Merkintalista {
         return false;
     }
     
+    /**
+     * Lisää merkinnän listaan
+     * 
+     * @param paiva Päivä jolle merkintä lisätään
+     * @param lisattava Merkintä, joka päivään lisätään
+     * @return Palauttaa sen, onnistuiko operaatio
+     */
+    
     public boolean lisaa(String paiva, Merkinta lisattava){
         
         if( !this.lista.keySet().contains(paiva)){
@@ -70,6 +92,10 @@ public class Merkintalista {
         }
         return false;
     }
+    
+    /**
+     * Alustaa viikonpäivät listan Map:iin
+     */
     
     private void alustaLista(){
         

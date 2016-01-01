@@ -6,8 +6,10 @@
 package luentokalenteri.domain.lista;
 
 /**
- *
- * @author Pullis
+ * Luokka sisältää kuvauksen yksittäisestä merkinnästä ja tarjoaa metodit muokata sitä.
+ * @author Pullari
+ * 
+ * 
  */
 public class Merkinta {
     
@@ -20,9 +22,9 @@ public class Merkinta {
         this.aika = aika;
     }
     
-    public void setNimi(){
+    public void setNimi(String uusi){
         
-        this.nimi = nimi;
+        this.nimi = uusi;
     }
     
     public String getNimi(){
@@ -30,9 +32,9 @@ public class Merkinta {
         return this.nimi;
     }
     
-    public void setAika(){
+    public void setAika(String uusi){
         
-        this.aika = aika;
+        this.aika = uusi;
     }
     
     public String getAika(){

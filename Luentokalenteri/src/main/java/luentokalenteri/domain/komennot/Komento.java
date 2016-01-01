@@ -10,8 +10,9 @@ import luentokalenteri.domain.lista.Merkintalista;
 import luentokalenteri.domain.tiedostonkasittelija.TiedostoonTallentaja;
 
 /**
- *
- * @author Pullis
+ * Rajapinta komennoille
+ * @author Pullari
+ * 
  */
 public interface Komento {
     

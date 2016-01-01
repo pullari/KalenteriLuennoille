@@ -20,8 +20,9 @@ import luentokalenteri.domain.tiedostonkasittelija.TiedostonLukija;
 import luentokalenteri.domain.tiedostonkasittelija.TiedostoonTallentaja;
 
 /**
- *
- * @author Pullis
+ * Sovelluksen peruslogiikka, joka huolehtii sovelluksen luokkien käytöstä
+ * @author Pullari
+ * 
  */
 public class Sovelluslogiikka {
     
@@ -51,20 +52,43 @@ public class Sovelluslogiikka {
         return lista.toString();
     }
     
+    /**
+     * Tallentaa listan tiedostoon
+     * 
+     * @see luentokalenteri.domain.tiedostonkasittelija.TiedostoonTallentaja#tallennaTilanne(java.util.Map) 
+     */
+    
     public void tallennaTila(){
         
         tallentaja.tallennaTilanne(this.lista.getMap());
     }
+    
+    /**
+     * Purkaa tallennetut merkinnät tiedostosta
+     * 
+     * @see luentokalenteri.domain.tiedostonkasittelija.TiedostonLukija#puraTallennetut(java.util.Map) 
+     */
     
     public void puraTiedosto(){
         
         this.tiedostonLukija.puraTallennetut(this.lista.getMap());
     }
     
+    /**
+     * 
+     * @param indeksi Suoritettavan komennon indeksi komentolistassa
+     * @param arg Komennolle annettavat String-muuttujat
+     * @return Palauttaa onnistuiko suoritus
+     */
+    
     public boolean suoritaKomento(int indeksi, String... arg){
         
         return this.komennot.get(indeksi - 1).suorita(this.lista, arg);
     }
+    
+    /**
+     * Lisää komennot listaan, josta ne voidaan suorittaa
+     */
     
     private void alustaKomennot(){
         
@@ -78,6 +102,10 @@ public class Sovelluslogiikka {
         this.komennot.add(kolmas);
         this.komennot.add(neljas);
     }
+    
+    /**
+     * alustaa tiedostonkäsittelyyn tarvittavat luokat try - catch:lla
+     */
     
     private void alustaTiedostonLukijaJaTallentaja() {
         

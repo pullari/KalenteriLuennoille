@@ -10,11 +10,20 @@ import luentokalenteri.domain.lista.Merkinta;
 import luentokalenteri.domain.lista.Merkintalista;
 
 /**
- *
- * @author Pullis
+ * Komento, jota voi kutsua sovelluslogiikassa, joka lisää 
+ * @author Pullari
+ * 
  */
 public class Lisaa implements Komento {
 
+    /**
+     * Lisäys-komennon suorita metodi, joka luo uuden merkinnän ja lisää sen merkintälistaan
+     * @param lista lista johon merkintä lisätään
+     * @param arg merkinnän nimi ja aika, sekä päivä johon listätää
+     * @see luentokalenteri.domain.lista.Merkintalista#lisaa(java.lang.String, luentokalenteri.domain.lista.Merkinta) 
+     * @return palauttaa boolean arvon onnistumisesta
+     */
+    
     @Override
     public boolean suorita(Merkintalista lista, String... arg) {
         
@@ -27,6 +36,11 @@ public class Lisaa implements Komento {
         }
     }
     
+    /**
+     * Tarkistaa, että aika on aika, joka kelpaa listaan
+     * @param aika tarkistettava aika String muodossa
+     * @return palauttaa boolean arvon onnistumisesta
+     */
     private boolean tarkistaAika(String aika){
         
         if(tarkistaMuoto(aika)){
@@ -45,6 +59,12 @@ public class Lisaa implements Komento {
             return false;
         }
     }
+    
+    /**
+     * Tarkistaa annetun String muutujan muodon
+     * @param tama muuttuja, jonka muoto tarkistetaan
+     * @return palauttaa onnistuiko
+     */
     
     private boolean tarkistaMuoto(String tama){
         

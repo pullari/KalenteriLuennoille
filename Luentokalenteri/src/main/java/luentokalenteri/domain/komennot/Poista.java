@@ -10,11 +10,19 @@ import luentokalenteri.domain.lista.Merkinta;
 import luentokalenteri.domain.lista.Merkintalista;
 
 /**
- *
- * @author Pullis
+ * Määrittelee komennon, joka poistaa listasta merkinnän
+ * @author Pullari
+ * 
  */
 public class Poista implements Komento {
     
+    /**
+     * Poistaa listasta määritellyn merkinnän
+     * @param lista lista, josta poistetaan
+     * @param arg Poistettavan merkinnän päivä ja nimi
+     * @see luentokalenteri.domain.lista.Merkintalista#poista(java.lang.String, java.lang.String) 
+     * @return palauttaa onnistuiko operaatio
+     */
     @Override
     public boolean suorita(Merkintalista lista, String... arg) {
         

@@ -9,11 +9,18 @@ import java.util.Scanner;
 import luentokalenteri.domain.lista.Merkintalista;
 
 /**
- *
+ * Komennon "Tyhjennä" määrittely
  * @author Pullis
+ * 
  */
 public class Tyhjenna implements Komento {
 
+    /**
+     * Tyhjentää koko listan, joka sille annetaan
+     * @param lista tyhjennettävä lista
+     * @param arg ei käytetä metodissa mutta määritelty rajapinnassa
+     * @return onnistuiko operaatio
+     */
     @Override
     public boolean suorita(Merkintalista lista, String... arg) {
         
