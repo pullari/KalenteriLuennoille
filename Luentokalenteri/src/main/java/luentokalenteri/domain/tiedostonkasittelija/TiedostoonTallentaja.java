@@ -14,8 +14,8 @@ import java.util.Scanner;
 import luentokalenteri.domain.lista.Merkinta;
 
 /**
- *
- * @author Pullis
+ * Luokka huolehtii listattujen merkintöjen tiedostoon tallentamisesta
+ * @author Pullari
  */
 public class TiedostoonTallentaja {
     
@@ -26,7 +26,11 @@ public class TiedostoonTallentaja {
         this.tiedosto = tiedosto;
     }
     
-    public void tallennaTilanne(Map<String, List<Merkinta>> tallennettava){
+    /**
+     * Metodi, joka alustaa FileWriterin ja huolehtii siitä, ettei tapahdu virhettä sen vuoksi
+     * @param tallennettava Tiedostoon tallennettava Map
+     */
+    public boolean tallennaTilanne(Map<String, List<Merkinta>> tallennettava){
         
         try{
             FileWriter tallentaja = new FileWriter(this.tiedosto);
@@ -34,13 +38,21 @@ public class TiedostoonTallentaja {
             for (String avain : tallennettava.keySet()) {
                 kokoaJaTallennaMerkinnat(tallennettava, avain, tallentaja);
             }
-            
             tallentaja.close();
+            return true;
         }catch(Exception e){
             
-            System.out.println("Virhe tallentaessa");
+            return false;
         }
     }
+    
+    /**
+     * Metodi kokoaa merkinnöistä ja päivistä tallennettavat String esitykset ja tallentaa ne tiedostoon
+     * @param tallennettava Lista, joka tallennetaan
+     * @param avain avain, jota käytetään merkintöjen hakemiseen eri päiviltä
+     * @param tallentaja Filewriter, jonka tehtävä on tallentaa lista
+     * @throws IOException Koska käytetään FileWriteria on IOExpception heitettävä
+     */
     
     private void kokoaJaTallennaMerkinnat(Map<String, List<Merkinta>> tallennettava, String avain, FileWriter tallentaja) throws IOException{
         
@@ -50,6 +62,13 @@ public class TiedostoonTallentaja {
             tallentaja.write(tiedostoon);
         }
     }
+    
+    /**
+     * Metodi huolehtii, että tallennettavat tiedot tallennetaan oikeassa muodossa
+     * @param paiva Päivä, jossa tallennettava merkintä on
+     * @param merkinta Itse merkintä, jonka tiedot tallennetaan
+     * @return Palauttaa tallennettavan String esityksen päivästä ja merkinnästä
+     */
     
     private String kokoaTallennusMuoto(String paiva, Merkinta merkinta){
         

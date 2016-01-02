@@ -47,6 +47,17 @@ public class Sovelluslogiikka {
         return this.lista;
     }
     
+    /**
+     * Sovelluslogiikan metodi joka pyytää listaa tulostamaan tietyn päivän
+     * @param paiva Päivä, joka tulostetaan
+     * @return palauttaa päivän tulostus muodon
+     */
+    
+    public String tulostaPaiva(String paiva){
+        
+        return lista.tulostaPaiva(paiva);
+    }
+    
     public String tulosta(){
         
         return lista.toString();
@@ -56,17 +67,19 @@ public class Sovelluslogiikka {
      * Tallentaa listan tiedostoon
      * 
      * @see luentokalenteri.domain.tiedostonkasittelija.TiedostoonTallentaja#tallennaTilanne(java.util.Map) 
+     * @return palauttaa tiedon operaation onnistumisesta
      */
     
-    public void tallennaTila(){
+    public boolean tallennaTila(){
         
-        tallentaja.tallennaTilanne(this.lista.getMap());
+        return tallentaja.tallennaTilanne(this.lista.getMap());
     }
     
     /**
      * Purkaa tallennetut merkinnät tiedostosta
      * 
      * @see luentokalenteri.domain.tiedostonkasittelija.TiedostonLukija#puraTallennetut(java.util.Map) 
+     * 
      */
     
     public void puraTiedosto(){
@@ -75,7 +88,7 @@ public class Sovelluslogiikka {
     }
     
     /**
-     * 
+     * Metodi pyytää sille annettua komentoa suorittamaan itsensä
      * @param indeksi Suoritettavan komennon indeksi komentolistassa
      * @param arg Komennolle annettavat String-muuttujat
      * @return Palauttaa onnistuiko suoritus

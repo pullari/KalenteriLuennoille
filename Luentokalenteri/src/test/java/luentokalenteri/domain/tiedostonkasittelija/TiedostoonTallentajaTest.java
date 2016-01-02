@@ -60,9 +60,7 @@ public class TiedostoonTallentajaTest {
     public void vaaraTiedostoTestiToimii(){
         
         testattava = new TiedostoonTallentaja(new File("\"src/test/java/luentokalenteri/domain/util/testiTiedostoonKirjoittajale.txt\""));
-        testattava.tallennaTilanne(testiLista);
-        String tulos = tulosvirta.toString();
-        assertTrue(tulos.contains("Virhe tallentaessa"));
+        assertFalse(testattava.tallennaTilanne(testiLista));
     }
     
     @Test

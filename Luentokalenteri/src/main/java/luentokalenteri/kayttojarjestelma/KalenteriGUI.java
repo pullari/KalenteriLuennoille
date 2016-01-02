@@ -36,7 +36,7 @@ public class KalenteriGUI extends javax.swing.JFrame implements Runnable{
         logiikka = new Sovelluslogiikka("src/main/java/luentokalenteri/domain/lista/testausta.txt");
         logiikka.puraTiedosto();
         lisataanTallennusKunRaksiaPainetaan();
-        paivitaArea();
+        paivitaTable();
     }
     
     @Override
@@ -64,8 +64,8 @@ public class KalenteriGUI extends javax.swing.JFrame implements Runnable{
         this.addWindowListener(ohitettuDefaultClose);
     }
     
-    private void paivitaArea(){
-        jTextArea1.setText(logiikka.tulosta());
+    private void paivitaTable(){
+        
         DefaultTableModel model = (DefaultTableModel)jTable1.getModel();
         model.fireTableDataChanged();
     }
@@ -83,6 +83,8 @@ public class KalenteriGUI extends javax.swing.JFrame implements Runnable{
         jTextArea1 = new javax.swing.JTextArea();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jList2 = new javax.swing.JList();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -119,6 +121,18 @@ public class KalenteriGUI extends javax.swing.JFrame implements Runnable{
             }
         ));
         jScrollPane2.setViewportView(jTable1);
+
+        jList2.setModel(new javax.swing.AbstractListModel() {
+            String[] strings = { "Maanantai", "Tiistai", "Keskiviikko", "Torstai", "Perjantai" };
+            public int getSize() { return strings.length; }
+            public Object getElementAt(int i) { return strings[i]; }
+        });
+        jList2.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                jList2ValueChanged(evt);
+            }
+        });
+        jScrollPane4.setViewportView(jList2);
 
         jMenu1.setText("File");
 
@@ -167,23 +181,24 @@ public class KalenteriGUI extends javax.swing.JFrame implements Runnable{
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 180, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(134, 134, 134))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane4)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 209, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(26, 26, 26)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(63, Short.MAX_VALUE))
+                        .addGap(5, 5, 5)
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -195,7 +210,7 @@ public class KalenteriGUI extends javax.swing.JFrame implements Runnable{
         String nimi = JOptionPane.showInputDialog("Anna nimi (ei puolipisteitä)");
         
         if(logiikka.suoritaKomento(2, paiva, nimi)){
-            paivitaArea();
+            paivitaTable();
             
         }else{
             JOptionPane.showMessageDialog(null, "Virhe", "Poisto epäonnistui", JOptionPane.ERROR_MESSAGE);
@@ -212,7 +227,7 @@ public class KalenteriGUI extends javax.swing.JFrame implements Runnable{
         String aika = JOptionPane.showInputDialog("Ana aika (esim. 12-14)");
         
         if(logiikka.suoritaKomento(1, paiva, nimi, aika)){
-            paivitaArea();
+            paivitaTable();
             
         }else{
             JOptionPane.showMessageDialog(null, "Virhe", "Lisäys epäonnistui", JOptionPane.ERROR_MESSAGE);
@@ -223,7 +238,7 @@ public class KalenteriGUI extends javax.swing.JFrame implements Runnable{
         // TODO add your handling code here:
         
         if(logiikka.suoritaKomento(3)){
-            paivitaArea();
+            paivitaTable();
             
         }else{
             JOptionPane.showMessageDialog(null, "Virhe", "Tyhjennys epäonnistui", JOptionPane.ERROR_MESSAGE);
@@ -236,8 +251,20 @@ public class KalenteriGUI extends javax.swing.JFrame implements Runnable{
         logiikka.tallennaTila();
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
+    private void jList2ValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jList2ValueChanged
+        // TODO add your handling code here:
+        if (jList2.getSelectedIndex() == -1) {
+
+        } else {
+            String[] paivat = {"ma", "ti", "ke", "to", "pe"};
+            jTextArea1.setText(logiikka.tulostaPaiva(paivat[jList2.getSelectedIndex()]));
+        }
+        
+    }//GEN-LAST:event_jList2ValueChanged
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JList jList2;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
@@ -248,6 +275,7 @@ public class KalenteriGUI extends javax.swing.JFrame implements Runnable{
     private javax.swing.JOptionPane jOptionPane1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextArea jTextArea1;
     // End of variables declaration//GEN-END:variables

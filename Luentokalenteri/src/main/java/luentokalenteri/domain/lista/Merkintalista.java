@@ -106,6 +106,23 @@ public class Merkintalista {
         }
     }
     
+    /**
+     * Metodi, joka valmistelee yksittäisen päivän tulostus muodon GUI:iin
+     * @param paiva Paiva, jonka merkinnät halutaan tulostaa
+     * @return Tulostus muoto päivän merkinnöille
+     */
+    
+    public String tulostaPaiva(String paiva){
+        
+        String palauta = "";
+        
+        for (Merkinta tama : this.lista.get(paiva)) {
+            
+            palauta += tama.toString() + "\n";
+        }
+        return palauta;
+    }
+    
     @Override
     public String toString(){
         

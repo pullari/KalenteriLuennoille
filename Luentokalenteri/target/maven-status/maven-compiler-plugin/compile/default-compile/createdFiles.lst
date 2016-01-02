@@ -6,12 +6,14 @@ luentokalenteri\domain\komennot\Tulosta.class
 luentokalenteri\domain\komennot\Lisaa.class
 luentokalenteri\domain\lista\Merkinta.class
 luentokalenteri\kayttojarjestelma\KalenteriGUI$5.class
+luentokalenteri\kayttojarjestelma\KalenteriGUI$7.class
 luentokalenteri\domain\komennot\Tyhjenna.class
 luentokalenteri\kayttojarjestelma\KalenteriGUI$1.class
 luentokalenteri\kayttojarjestelma\tekstiKayttojarjestelma.class
 luentokalenteri\sovelluslogiikka\Sovelluslogiikka.class
 luentokalenteri\domain\komennot\Komento.class
 luentokalenteri\domain\tiedostonkasittelija\TiedostonLukija.class
+luentokalenteri\kayttojarjestelma\KalenteriGUI$6.class
 PaaohjelmaTeustaukseen\Main.class
 luentokalenteri\kayttojarjestelma\KalenteriGUI.class
 luentokalenteri\kayttojarjestelma\KalenteriGUI$2.class

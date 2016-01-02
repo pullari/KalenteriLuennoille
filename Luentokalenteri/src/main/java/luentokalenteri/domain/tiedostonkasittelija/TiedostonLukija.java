@@ -14,7 +14,7 @@ import java.util.Scanner;
 import luentokalenteri.domain.lista.Merkinta;
 
 /**
- *
+ * Luokka, joka ohjelman käynnistyessä lukee tiedostosta tallennetut merkinnät
  * @author Pullis
  */
 public class TiedostonLukija {
@@ -27,6 +27,12 @@ public class TiedostonLukija {
         lukija = new Scanner(tiedosto);
     }
     
+    /**
+     * Metodi purkaa tallennus tiedostoon tallennetut merkinnät ja lisää ne listaan
+     * @param puraTahan Lista johon merkinnät puretaan
+     * 
+     */
+    
     public void puraTallennetut(Map<String, List<Merkinta>> puraTahan){
         
         while(this.lukija.hasNextLine()){
@@ -38,7 +44,7 @@ public class TiedostonLukija {
                 
                 puraTahan.get(rivinOsat[0]).add(new Merkinta(rivinOsat[1], rivinOsat[2]));
             }catch(Exception e){
-                
+             
                 System.out.println("Virhe purettaessa tiedostoa!");
             }
         }
