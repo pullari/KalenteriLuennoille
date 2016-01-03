@@ -33,7 +33,7 @@ public class TiedostonLukija {
      * 
      */
     
-    public void puraTallennetut(Map<String, List<Merkinta>> puraTahan){
+    public boolean puraTallennetut(Map<String, List<Merkinta>> puraTahan){
         
         while(this.lukija.hasNextLine()){
             
@@ -45,8 +45,9 @@ public class TiedostonLukija {
                 puraTahan.get(rivinOsat[0]).add(new Merkinta(rivinOsat[1], rivinOsat[2]));
             }catch(Exception e){
              
-                System.out.println("Virhe purettaessa tiedostoa!");
+                return false;
             }
         }
+        return true;
     }
 }

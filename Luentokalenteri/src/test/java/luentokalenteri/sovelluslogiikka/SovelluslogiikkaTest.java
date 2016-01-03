@@ -108,12 +108,12 @@ public class SovelluslogiikkaTest {
         Sovelluslogiikka purkuaVarten = new Sovelluslogiikka("src/test/java/luentokalenteri/sovelluslogiikka/purettava.txt");
         alustaLista();
         
-        String syote = kasaa("turha");
         purkuaVarten.puraTiedosto();
-        purkuaVarten.suoritaKomento(4, syote);
+        purkuaVarten.suoritaKomento(4);
         
         String tulos = tulosvirta.toString();
         System.out.println(tulos);
+        
         assertTrue(tulos.contains("ma") && tulos.contains("OTM") && tulos.contains("1-2"));
         assertTrue(tulos.contains("ti") && tulos.contains("samuli") && tulos.contains("tama"));
     }
@@ -123,12 +123,12 @@ public class SovelluslogiikkaTest {
         
         Sovelluslogiikka purkuaVarten = new Sovelluslogiikka("src/test/java/luentokalenteri/sovelluslogiikka/purettava.txt");
         alustaLista();
-        
-        String syote = kasaa("turha");
-        purkuaVarten.suoritaKomento(4, syote);
+
+        purkuaVarten.suoritaKomento(4);
         
         String tulos = tulosvirta.toString();
         System.out.println(tulos);
+        
         assertFalse(tulos.contains("ma") && tulos.contains("OTM") && tulos.contains("1-2"));
         assertFalse(tulos.contains("ti") && tulos.contains("samuli") && tulos.contains("tama"));
     }

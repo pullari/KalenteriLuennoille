@@ -78,7 +78,6 @@ public class KalenteriGUI extends javax.swing.JFrame implements Runnable{
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jOptionPane1 = new javax.swing.JOptionPane();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -192,8 +191,7 @@ public class KalenteriGUI extends javax.swing.JFrame implements Runnable{
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(5, 5, 5)
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
@@ -213,7 +211,7 @@ public class KalenteriGUI extends javax.swing.JFrame implements Runnable{
             paivitaTable();
             
         }else{
-            JOptionPane.showMessageDialog(null, "Virhe", "Poisto epäonnistui", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Poisto epäonnistui", "Virhe", JOptionPane.ERROR_MESSAGE);
             
         }
         
@@ -224,13 +222,13 @@ public class KalenteriGUI extends javax.swing.JFrame implements Runnable{
         
         String paiva = JOptionPane.showInputDialog("Anna paiva (ma, ti, ke, to, pe)");
         String nimi = JOptionPane.showInputDialog("Anna nimi (ei puolipisteitä)");
-        String aika = JOptionPane.showInputDialog("Ana aika (esim. 12-14)");
+        String aika = JOptionPane.showInputDialog("Anna aika (esim. 12-14)");
         
         if(logiikka.suoritaKomento(1, paiva, nimi, aika)){
             paivitaTable();
             
         }else{
-            JOptionPane.showMessageDialog(null, "Virhe", "Lisäys epäonnistui", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Lisäys epäonnistui", "Virhe", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
@@ -241,7 +239,7 @@ public class KalenteriGUI extends javax.swing.JFrame implements Runnable{
             paivitaTable();
             
         }else{
-            JOptionPane.showMessageDialog(null, "Virhe", "Tyhjennys epäonnistui", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Tyhjennys epäonnistui", "Virhe", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
@@ -272,7 +270,6 @@ public class KalenteriGUI extends javax.swing.JFrame implements Runnable{
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JOptionPane jOptionPane1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane4;

@@ -79,12 +79,12 @@ public class Sovelluslogiikka {
      * Purkaa tallennetut merkinnät tiedostosta
      * 
      * @see luentokalenteri.domain.tiedostonkasittelija.TiedostonLukija#puraTallennetut(java.util.Map) 
-     * 
+     * @return palauttaa onnistuiko operaatio
      */
     
-    public void puraTiedosto(){
+    public boolean puraTiedosto(){
         
-        this.tiedostonLukija.puraTallennetut(this.lista.getMap());
+        return this.tiedostonLukija.puraTallennetut(this.lista.getMap());
     }
     
     /**
@@ -120,16 +120,17 @@ public class Sovelluslogiikka {
      * alustaa tiedostonkäsittelyyn tarvittavat luokat try - catch:lla
      */
     
-    private void alustaTiedostonLukijaJaTallentaja() {
+    private boolean alustaTiedostonLukijaJaTallentaja() {
         
         try{
             File tiedosto = new File(this.tiedostonNimi);
             this.tiedostonLukija = new TiedostonLukija(tiedosto);
             this.tallentaja = new TiedostoonTallentaja(tiedosto);
+            return true;
             
         }catch(Exception e){
             
-            System.out.println("Virhe! Tarkista tallnennustiedoston olemassaolo");
+            return false;
         }
     }
 }

@@ -61,10 +61,7 @@ public class TiedostonLukijaTest {
         
         try{
             testattava = new TiedostonLukija(new File("src/test/java/luentokalenteri/domain/util/virheellinenTiedostoTesti.txt"));
-            testattava.puraTallennetut(testiLista);
-            String tulos = tulosvirta.toString();
-            System.out.println(tulos);
-            assertTrue(tulos.contains("Virhe purettaessa tiedostoa!"));
+            assertFalse(testattava.puraTallennetut(testiLista));
         }catch(Exception e){
             
         }
