@@ -42,11 +42,10 @@ public class KalenteriGUI extends javax.swing.JFrame implements Runnable{
     @Override
     public void run() {
         
-        jTable1.getColumnModel().getColumn(1).setCellRenderer(new omaRenderoija());
-        jTable1.getColumnModel().getColumn(2).setCellRenderer(new omaRenderoija());
-        jTable1.getColumnModel().getColumn(3).setCellRenderer(new omaRenderoija());
-        jTable1.getColumnModel().getColumn(4).setCellRenderer(new omaRenderoija());
-        jTable1.getColumnModel().getColumn(5).setCellRenderer(new omaRenderoija());
+        for (int i = 1; i < 6; i++) {
+            jTable1.getColumnModel().getColumn(i).setCellRenderer(new omaRenderoija());
+            
+        }
         this.pack();
         this.setVisible(true);
     }

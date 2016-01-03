@@ -1,5 +1,6 @@
 ma;OTM;12-14
 ti;OHJA;8-9
 ti;Nimi;12-14
+pe;Toimii;11-14
 ke;Luento;10-12
 to;Samuli;9-12
