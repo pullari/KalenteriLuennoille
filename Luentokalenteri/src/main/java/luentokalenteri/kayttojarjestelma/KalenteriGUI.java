@@ -301,6 +301,7 @@ public class KalenteriGUI extends javax.swing.JFrame implements Runnable{
                         
                     }else{
                         cell.setBackground(Color.white);
+                        jTable1.setValueAt("", row, column);
                     }
                         
                 }
@@ -314,7 +315,6 @@ public class KalenteriGUI extends javax.swing.JFrame implements Runnable{
             jTable1.setValueAt(tama.getNimi(), aikaPurettuna[0], column);
         }
 
-        
         private void lisaaAjatListaan(Merkinta tama, ArrayList<Integer> lista){
 
             int[] aikaPurettuna = puraAika(tama);

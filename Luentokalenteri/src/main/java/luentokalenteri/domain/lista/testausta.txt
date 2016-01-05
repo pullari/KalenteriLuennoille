@@ -1,8 +1,4 @@
 ma;OTM;12-14
-ma;Ehkä;9-10
 ti;OHJA;8-9
 ti;Nimi;12-14
-pe;Toimii;11-14
 ke;Luento;10-12
-ke;Testing;15-17
-to;Samuli;9-12

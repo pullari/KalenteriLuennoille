@@ -11,5 +11,5 @@ Päivämäärä / Käytetyt tunnit / Ajankäytön kohde
 * 30.12.2015 / 7 tuntia / NetBeans GUI Builder harjoittelua ja ensimmäinen graafinen käyttöliittymä valmiiksi
 * 1.1.2016 / 2 tuntia / aloitettu javadocin teko
 * 2.1.2016 / 2 tuntia / Jatkettu javadocia ja huomattavasti paranneltu GUI:n ulkonäköä ja toimintaa
-* 3.1.2016 / 2 tunti / Poistettu viimeinenkin tulostus ja päivitetty testejä ja hieman refaktorointia
-* 5.1.2016 / 1 tunti / lisätty tarkistus, että merkinnän nimi ei sisällä puolipisteitä, sekä nimet kalenteriin ja uusi testi.
+* 3.1.2016 / 2 tuntia / Poistettu viimeinenkin tulostus ja päivitetty testejä ja hieman refaktorointia
+* 5.1.2016 / 2 tuntia / lisätty tarkistus, että merkinnän nimi ei sisällä puolipisteitä, sekä nimet kalenteriin ja uusi testi. Bugi-testausta
