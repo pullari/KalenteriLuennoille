@@ -64,6 +64,15 @@ public class SovelluslogiikkaTest {
     }
     
     @Test
+    public void lisaysEiToimiJosPuolipisteNimessa(){
+        
+        alustaLista();
+        
+        String[] syote = {"ti", "OT;M", "12-14"};
+        assertFalse(testaa.suoritaKomento(1, syote));
+    }
+    
+    @Test
     public void komentoEiToimiVaarillaSyotteilla(){
         
         alustaLista();

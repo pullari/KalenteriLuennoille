@@ -27,7 +27,7 @@ public class Lisaa implements Komento {
     @Override
     public boolean suorita(Merkintalista lista, String... arg) {
         
-        if(!tarkistaAika(arg[2])){
+        if(!tarkistaAika(arg[2]) || !tarkistaNimi(arg[1])){
             
             return false;
         }else{
@@ -35,12 +35,26 @@ public class Lisaa implements Komento {
             return lista.lisaa(arg[0], lisattava);
         }
     }
+    /**
+     * Tarkistaa että nimi ei sisällä puolipisteitä
+     * @param nimi nimi, joka tarkistetaan
+     * @return false, jos nimessä puolipiste, muuten true
+     */
+    
+    private boolean tarkistaNimi(String nimi){
+        
+        if(nimi.contains(";")){
+            return false;
+        }
+        return true;
+    }
     
     /**
      * Tarkistaa, että aika on aika, joka kelpaa listaan
      * @param aika tarkistettava aika String muodossa
      * @return palauttaa boolean arvon onnistumisesta
      */
+
     private boolean tarkistaAika(String aika){
         
         if(tarkistaMuoto(aika)){

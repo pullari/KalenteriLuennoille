@@ -294,20 +294,37 @@ public class KalenteriGUI extends javax.swing.JFrame implements Runnable{
                     
                     for (Merkinta tama : listaTulostettavista.get(paivat[i - 1])) {
                         lisaaAjatListaan(tama, varjattavat);
+                        tulostaNimiTableen(tama, column);
                     }
                     if(varjattavat.contains(row)){
                         cell.setBackground(Color.red);
-
+                        
                     }else{
                         cell.setBackground(Color.white);
                     }
+                        
                 }
             }
             return cell;
         }
+        
+        private void tulostaNimiTableen(Merkinta tama, int column){
+
+            int[] aikaPurettuna = puraAika(tama);
+            jTable1.setValueAt(tama.getNimi(), aikaPurettuna[0], column);
+        }
 
         
         private void lisaaAjatListaan(Merkinta tama, ArrayList<Integer> lista){
+
+            int[] aikaPurettuna = puraAika(tama);
+            
+            for (int i = aikaPurettuna[0]; i <= aikaPurettuna[1]; i++) {
+                lista.add(i); 
+            }
+        }
+        
+        private int[] puraAika(Merkinta tama){
             
             String aika = tama.getAika();
             String[] osat = aika.split("-");
@@ -315,9 +332,9 @@ public class KalenteriGUI extends javax.swing.JFrame implements Runnable{
             int eka = Integer.parseInt(osat[0]);
             int toka = Integer.parseInt(osat[1]);
             
-            for (int i = eka; i <= toka; i++) {
-                lista.add(i - 8); //Miinus 8 koska mukautetaan riveihin JTablessa.
-            }
+            int[] palautettava = {eka - 8, toka - 8}; //Miinus 8 koska mukautetaan riveihin JTablessa.
+            
+            return palautettava;
         }
     }
 }
