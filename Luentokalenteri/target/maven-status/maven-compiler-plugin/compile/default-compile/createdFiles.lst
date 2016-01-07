@@ -2,6 +2,7 @@ luentokalenteri\kayttojarjestelma\OmaDialog$2.class
 luentokalenteri\kayttojarjestelma\KalenteriGUI$3.class
 luentokalenteri\domain\komennot\Poista.class
 luentokalenteri\domain\komennot\Tulosta.class
+luentokalenteri\main\Main.class
 luentokalenteri\domain\komennot\Lisaa.class
 luentokalenteri\domain\lista\Merkinta.class
 luentokalenteri\kayttojarjestelma\KalenteriGUI$5.class
@@ -20,6 +21,5 @@ luentokalenteri\kayttojarjestelma\OmaDialog$1.class
 luentokalenteri\kayttojarjestelma\KalenteriGUI$1.class
 luentokalenteri\kayttojarjestelma\OmaDialog.class
 luentokalenteri\kayttojarjestelma\KalenteriGUI$6.class
-PaaohjelmaTeustaukseen\Main.class
 luentokalenteri\kayttojarjestelma\OmaDialog$3.class
 luentokalenteri\domain\lista\Merkintalista.class

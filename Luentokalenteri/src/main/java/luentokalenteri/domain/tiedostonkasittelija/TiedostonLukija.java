@@ -15,36 +15,38 @@ import luentokalenteri.domain.lista.Merkinta;
 
 /**
  * Luokka, joka ohjelman käynnistyessä lukee tiedostosta tallennetut merkinnät
+ *
  * @author Pullis
  */
 public class TiedostonLukija {
 
     private Scanner lukija;
     private File tiedosto;
-    
-    public TiedostonLukija(File tiedosto) throws IOException{
-        
+
+    public TiedostonLukija(File tiedosto) throws IOException {
+
         lukija = new Scanner(tiedosto);
     }
-    
+
     /**
-     * Metodi purkaa tallennus tiedostoon tallennetut merkinnät ja lisää ne listaan
+     * Metodi purkaa tallennus tiedostoon tallennetut merkinnät ja lisää ne
+     * listaan
+     *
      * @param puraTahan Lista johon merkinnät puretaan
-     * 
+     *
      */
-    
-    public boolean puraTallennetut(Map<String, List<Merkinta>> puraTahan){
-        
-        while(this.lukija.hasNextLine()){
-            
+    public boolean puraTallennetut(Map<String, List<Merkinta>> puraTahan) {
+
+        while (this.lukija.hasNextLine()) {
+
             String rivi = lukija.nextLine();
             String[] rivinOsat = rivi.split(";");
-            
-            try{
-                
+
+            try {
+
                 puraTahan.get(rivinOsat[0]).add(new Merkinta(rivinOsat[1], rivinOsat[2]));
-            }catch(Exception e){
-             
+            } catch (Exception e) {
+
                 return false;
             }
         }

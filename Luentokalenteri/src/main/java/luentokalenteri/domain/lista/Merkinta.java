@@ -6,45 +6,47 @@
 package luentokalenteri.domain.lista;
 
 /**
- * Luokka sisältää kuvauksen yksittäisestä merkinnästä ja tarjoaa metodit muokata sitä.
+ * Luokka sisältää kuvauksen yksittäisestä merkinnästä ja tarjoaa metodit
+ * muokata sitä.
+ *
  * @author Pullari
- * 
- * 
+ *
+ *
  */
 public class Merkinta {
-    
+
     private String nimi;
     private String aika;
-    
-    public Merkinta(String nimi, String aika){
-        
+
+    public Merkinta(String nimi, String aika) {
+
         this.nimi = nimi;
         this.aika = aika;
     }
-    
-    public void setNimi(String uusi){
-        
+
+    public void setNimi(String uusi) {
+
         this.nimi = uusi;
     }
-    
-    public String getNimi(){
-        
+
+    public String getNimi() {
+
         return this.nimi;
     }
-    
-    public void setAika(String uusi){
-        
+
+    public void setAika(String uusi) {
+
         this.aika = uusi;
     }
-    
-    public String getAika(){
-        
+
+    public String getAika() {
+
         return this.aika;
     }
-    
+
     @Override
-    public String toString(){
-        
+    public String toString() {
+
         return this.nimi + " " + this.aika;
     }
 }

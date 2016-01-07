@@ -1,4 +1,4 @@
-package PaaohjelmaTeustaukseen;
+package luentokalenteri.main;
 
 import java.io.File;
 import java.util.Scanner;
@@ -14,11 +14,9 @@ import luentokalenteri.sovelluslogiikka.Sovelluslogiikka;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
- * @author Samuli Rouvinen
- * Version 0.1
+ * @author Samuli Rouvinen Version 0.1
  */
 public class Main {
 
@@ -27,12 +25,8 @@ public class Main {
      */
     public static void main(String[] args) {
         // Main testaamista varten. Ohjelma toimii suoraan käynnistämällä.
-        
+
         KalenteriGUI kayttis = new KalenteriGUI();
         kayttis.run();
-
-//        tekstiKayttojarjestelma kayttis = new tekstiKayttojarjestelma(new Scanner(System.in));
-//        kayttis.suorita();
-
     }
 }

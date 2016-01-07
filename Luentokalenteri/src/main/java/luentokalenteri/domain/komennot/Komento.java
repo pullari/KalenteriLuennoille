@@ -11,10 +11,11 @@ import luentokalenteri.domain.tiedostonkasittelija.TiedostoonTallentaja;
 
 /**
  * Rajapinta komennoille
+ *
  * @author Pullari
- * 
+ *
  */
 public interface Komento {
-    
+
     public boolean suorita(Merkintalista lista, String... tama);
 }
