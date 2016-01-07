@@ -13,3 +13,4 @@ Päivämäärä / Käytetyt tunnit / Ajankäytön kohde
 * 2.1.2016 / 2 tuntia / Jatkettu javadocia ja huomattavasti paranneltu GUI:n ulkonäköä ja toimintaa
 * 3.1.2016 / 2 tuntia / Poistettu viimeinenkin tulostus ja päivitetty testejä ja hieman refaktorointia
 * 5.1.2016 / 2 tuntia / lisätty tarkistus, että merkinnän nimi ei sisällä puolipisteitä, sekä nimet kalenteriin ja uusi testi. Bugi-testausta
+* 7.1.2016 / 1 tunti / Lisätty "kuvaus" ominaisuus merkintöihin ja muokattu GUI:a
