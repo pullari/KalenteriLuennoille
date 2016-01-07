@@ -33,7 +33,13 @@ public class KalenteriGUI extends javax.swing.JFrame implements Runnable {
     public KalenteriGUI() {
         initComponents();
         logiikka = new Sovelluslogiikka("src/main/java/luentokalenteri/domain/lista/tallennustiedosto.txt");
-        logiikka.puraTiedosto();
+        
+        try{
+            logiikka.puraTiedosto();
+            
+        }catch(Exception e){
+            
+        }
         lisataanTallennusKunRaksiaPainetaan();
         paivitaTable();
     }

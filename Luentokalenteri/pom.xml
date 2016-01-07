@@ -76,4 +76,10 @@
             <url>file:${project.basedir}/lib</url>
         </repository>
     </repositories>
+    <reporting>
+        <plugins>
+
+        </plugins>
+    </reporting>
+    <name>Luentokalenteri</name>
 </project>
