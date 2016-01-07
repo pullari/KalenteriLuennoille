@@ -16,7 +16,6 @@ import java.util.Scanner;
 import luentokalenteri.domain.lista.Merkinta;
 import luentokalenteri.domain.lista.Merkintalista;
 import luentokalenteri.domain.tiedostonkasittelija.TiedostonLukija;
-import luentokalenteri.kayttojarjestelma.tekstiKayttojarjestelma;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -59,7 +58,7 @@ public class SovelluslogiikkaTest {
         
         alustaLista();
         
-        String[] syote = {"ti", "OTM", "12-14"};
+        String[] syote = {"ti", "OTM", "12-14", "kuvaus"};
         assertTrue(testaa.suoritaKomento(1, syote));
     }
     
@@ -68,7 +67,7 @@ public class SovelluslogiikkaTest {
         
         alustaLista();
         
-        String[] syote = {"ti", "OT;M", "12-14"};
+        String[] syote = {"ti", "OT;M", "12-14", "kuvaus"};
         assertFalse(testaa.suoritaKomento(1, syote));
     }
     
@@ -77,7 +76,7 @@ public class SovelluslogiikkaTest {
         
         alustaLista();
         
-        String syote[] = {"123", "OTM", "12-14"};
+        String syote[] = {"123", "OTM", "12-14", "kuvaus"};
         assertFalse(testaa.suoritaKomento(1, syote));
     }
     
@@ -86,7 +85,7 @@ public class SovelluslogiikkaTest {
         
         alustaLista();
         
-        String[] syote = {"ti", "OTM", "12-14"};
+        String[] syote = {"ti", "OTM", "12-14", "kuvaus"};
         testaa.suoritaKomento(1, syote);
         testaa.tallennaTila();
         
@@ -101,7 +100,7 @@ public class SovelluslogiikkaTest {
         
         alustaLista();
         
-        String[] syote = {"ke", "Luento", "12-14"};
+        String[] syote = {"ke", "Luento", "12-14", "kuvaus"};
         testaa.suoritaKomento(1, syote);
         testaa.tallennaTila();
         

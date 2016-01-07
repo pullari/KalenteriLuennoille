@@ -1,13 +1,6 @@
 package luentokalenteri.main;
 
-import java.io.File;
-import java.util.Scanner;
-import luentokalenteri.domain.lista.Merkinta;
-import luentokalenteri.domain.lista.Merkintalista;
-import luentokalenteri.domain.tiedostonkasittelija.TiedostonLukija;
 import luentokalenteri.kayttojarjestelma.KalenteriGUI;
-import luentokalenteri.kayttojarjestelma.tekstiKayttojarjestelma;
-import luentokalenteri.sovelluslogiikka.Sovelluslogiikka;
 
 /*
  * To change this license header, choose License Headers in Project Properties.

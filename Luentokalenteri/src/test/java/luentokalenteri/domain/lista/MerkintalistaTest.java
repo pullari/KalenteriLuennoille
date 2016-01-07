@@ -29,8 +29,8 @@ public class MerkintalistaTest {
     public void setUp() {
         
         lista = new Merkintalista();
-        eka = new Merkinta("OTM", "12-14");
-        toka = new Merkinta("Luento", "8-9");
+        eka = new Merkinta("OTM", "12-14","toimii");
+        toka = new Merkinta("Luento", "8-9","testi");
     }
 
     @Test

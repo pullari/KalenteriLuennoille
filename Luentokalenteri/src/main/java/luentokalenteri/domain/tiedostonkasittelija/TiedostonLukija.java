@@ -7,7 +7,6 @@ package luentokalenteri.domain.tiedostonkasittelija;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
@@ -44,7 +43,7 @@ public class TiedostonLukija {
 
             try {
 
-                puraTahan.get(rivinOsat[0]).add(new Merkinta(rivinOsat[1], rivinOsat[2]));
+                puraTahan.get(rivinOsat[0]).add(new Merkinta(rivinOsat[1], rivinOsat[2], rivinOsat[3]));
             } catch (Exception e) {
 
                 return false;

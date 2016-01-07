@@ -17,13 +17,25 @@ public class Merkinta {
 
     private String nimi;
     private String aika;
+    private String kuvaus;
 
-    public Merkinta(String nimi, String aika) {
+    public Merkinta(String nimi, String aika, String kuvaus) {
 
         this.nimi = nimi;
         this.aika = aika;
+        this.kuvaus = kuvaus;
     }
 
+    public void setKuvaus(String uusi) {
+
+        this.kuvaus = uusi;
+    }
+
+    public String getKuvaus() {
+
+        return this.kuvaus;
+    }
+    
     public void setNimi(String uusi) {
 
         this.nimi = uusi;

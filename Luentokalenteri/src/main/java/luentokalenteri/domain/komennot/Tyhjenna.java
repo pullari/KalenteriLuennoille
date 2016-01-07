@@ -5,7 +5,6 @@
  */
 package luentokalenteri.domain.komennot;
 
-import java.util.Scanner;
 import luentokalenteri.domain.lista.Merkintalista;
 
 /**

@@ -69,8 +69,8 @@ public class TiedostoonTallentajaTest {
         Map<String, List<Merkinta>> puraTanne = new HashMap<>();
         alustaLista(puraTanne);
         
-        Merkinta lisays1 = new Merkinta("OHTU", "5-6");
-        Merkinta lisays2 = new Merkinta("OHJA", "15-16");
+        Merkinta lisays1 = new Merkinta("OHTU", "5-6","toimii");
+        Merkinta lisays2 = new Merkinta("OHJA", "15-16","testi");
         
         this.testiLista.get("ma").add(lisays1);
         this.testiLista.get("ke").add(lisays2);
@@ -88,8 +88,8 @@ public class TiedostoonTallentajaTest {
         Map<String, List<Merkinta>> puraTanne = new HashMap<>();
         alustaLista(puraTanne);
         
-        Merkinta lisays1 = new Merkinta("OHTU", "5-6");
-        Merkinta lisays2 = new Merkinta("OHJA", "15-16");
+        Merkinta lisays1 = new Merkinta("OHTU", "5-6","toimii");
+        Merkinta lisays2 = new Merkinta("OHJA", "15-16","testi");
         
         this.testiLista.get("ma").add(lisays1);
         this.testiLista.get("ke").add(lisays2);
@@ -107,8 +107,8 @@ public class TiedostoonTallentajaTest {
         Map<String, List<Merkinta>> puraTanne = new HashMap<>();
         alustaLista(puraTanne);
         
-        Merkinta lisays1 = new Merkinta("OHTU", "5-6");
-        Merkinta lisays2 = new Merkinta("OHJA", "15-16");
+        Merkinta lisays1 = new Merkinta("OHTU", "5-6","toimii");
+        Merkinta lisays2 = new Merkinta("OHJA", "15-16","testi");
         
         testattava.tallennaTilanne(testiLista);
         lue.puraTallennetut(puraTanne);
@@ -120,7 +120,7 @@ public class TiedostoonTallentajaTest {
     @Test
     public void merkinnanKokoaminenToimiiOikein(){
         
-        Merkinta testattava = new Merkinta("OHTU", "14-16");
+        Merkinta testattava = new Merkinta("OHTU", "14-16","toimii");
         String tama = kokoaTallennusMuoto("ma", testattava);
         
         assertEquals("ma;OHTU;14-16" + "\n", tama);

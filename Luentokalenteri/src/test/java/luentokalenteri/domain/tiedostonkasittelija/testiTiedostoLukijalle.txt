@@ -1,2 +1,2 @@
-to;OHPE;8-10
-ke;Aineharjoitus;12-14
+to;OHPE;8-10;toimii
+ke;Aineharjoitus;12-14;testejä

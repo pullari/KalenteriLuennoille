@@ -25,7 +25,7 @@ public class MerkintaTest {
     @Before
     public void setUp() {
         
-        testattava = new Merkinta("OTM","12-14");
+        testattava = new Merkinta("OTM","12-14","toimii");
     }
 
     @Test

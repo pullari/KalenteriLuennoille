@@ -10,7 +10,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
-import java.util.Scanner;
 import luentokalenteri.domain.lista.Merkinta;
 
 /**
@@ -78,6 +77,6 @@ public class TiedostoonTallentaja {
      */
     private String kokoaTallennusMuoto(String paiva, Merkinta merkinta) {
 
-        return paiva + ";" + merkinta.getNimi() + ";" + merkinta.getAika() + "\n";
+        return paiva + ";" + merkinta.getNimi() + ";" + merkinta.getAika() + ";" + merkinta.getKuvaus() + "\n";
     }
 }

@@ -5,7 +5,6 @@
  */
 package luentokalenteri.domain.komennot;
 
-import java.util.Scanner;
 import luentokalenteri.domain.lista.Merkinta;
 import luentokalenteri.domain.lista.Merkintalista;
 
@@ -34,7 +33,7 @@ public class Lisaa implements Komento {
 
             return false;
         } else {
-            Merkinta lisattava = new Merkinta(arg[1], arg[2]);
+            Merkinta lisattava = new Merkinta(arg[1], arg[2], arg[3]);
             return lista.lisaa(arg[0], lisattava);
         }
     }

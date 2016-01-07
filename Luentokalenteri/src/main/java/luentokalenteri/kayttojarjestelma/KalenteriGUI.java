@@ -10,8 +10,7 @@ import java.awt.Component;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.Scanner;
-import javax.swing.JComponent;
+import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -24,50 +23,51 @@ import luentokalenteri.sovelluslogiikka.Sovelluslogiikka;
  *
  * @author Pullis
  */
-public class KalenteriGUI extends javax.swing.JFrame implements Runnable{
+public class KalenteriGUI extends javax.swing.JFrame implements Runnable {
 
     /**
      * Creates new form KalenteriForm
      */
     Sovelluslogiikka logiikka;
-    
+
     public KalenteriGUI() {
         initComponents();
-        logiikka = new Sovelluslogiikka("src/main/java/luentokalenteri/domain/lista/testausta.txt");
+        logiikka = new Sovelluslogiikka("src/main/java/luentokalenteri/domain/lista/tallennustiedosto.txt");
         logiikka.puraTiedosto();
         lisataanTallennusKunRaksiaPainetaan();
         paivitaTable();
     }
-    
+
     @Override
     public void run() {
-        
+
         for (int i = 1; i < 6; i++) {
             jTable1.getColumnModel().getColumn(i).setCellRenderer(new omaRenderoija());
-            
+
         }
         this.pack();
         this.setVisible(true);
     }
-    
-    public void lisataanTallennusKunRaksiaPainetaan(){
-        
-        java.awt.event.WindowAdapter ohitettuDefaultClose = new java.awt.event.WindowAdapter(){ 
-            
-            @Override  
-            public void windowClosing(java.awt.event.WindowEvent evt){
+
+    public void lisataanTallennusKunRaksiaPainetaan() {
+
+        java.awt.event.WindowAdapter ohitettuDefaultClose = new java.awt.event.WindowAdapter() {
+
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent evt) {
                 logiikka.tallennaTila();
                 System.exit(0);
             }
         };
         this.addWindowListener(ohitettuDefaultClose);
     }
-    
-    private void paivitaTable(){
-        
-        DefaultTableModel model = (DefaultTableModel)jTable1.getModel();
+
+    private void paivitaTable() {
+
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         model.fireTableDataChanged();
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -83,6 +83,8 @@ public class KalenteriGUI extends javax.swing.JFrame implements Runnable{
         jTable1 = new javax.swing.JTable();
         jScrollPane4 = new javax.swing.JScrollPane();
         jList2 = new javax.swing.JList();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jList1 = new javax.swing.JList();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -132,6 +134,13 @@ public class KalenteriGUI extends javax.swing.JFrame implements Runnable{
         });
         jScrollPane4.setViewportView(jList2);
 
+        jList1.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                jList1ValueChanged(evt);
+            }
+        });
+        jScrollPane3.setViewportView(jList1);
+
         jMenu1.setText("File");
 
         jMenuItem1.setText("Tallenna");
@@ -179,72 +188,76 @@ public class KalenteriGUI extends javax.swing.JFrame implements Runnable{
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane4)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 209, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, Short.MAX_VALUE)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(13, 13, 13))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-        
+
         String paiva = JOptionPane.showInputDialog("Anna paiva (ma, ti, ke, to, pe)");
         String nimi = JOptionPane.showInputDialog("Anna nimi (ei puolipisteitä)");
-        
-        if(logiikka.suoritaKomento(2, paiva, nimi)){
+
+        if (logiikka.suoritaKomento(2, paiva, nimi)) {
             paivitaTable();
-            
-        }else{
+
+        } else {
             JOptionPane.showMessageDialog(null, "Poisto epäonnistui", "Virhe", JOptionPane.ERROR_MESSAGE);
-            
+
         }
-        
+
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         // TODO add your handling code here:
-        
+
         String paiva = JOptionPane.showInputDialog("Anna paiva (ma, ti, ke, to, pe)");
         String nimi = JOptionPane.showInputDialog("Anna nimi (ei puolipisteitä)");
         String aika = JOptionPane.showInputDialog("Anna aika (esim. 12-14)");
-        
-        if(logiikka.suoritaKomento(1, paiva, nimi, aika)){
+        String kuvaus = JOptionPane.showInputDialog("Anna lisätietoja jos haluat");
+
+        if (logiikka.suoritaKomento(1, paiva, nimi, aika, kuvaus)) {
             paivitaTable();
-            
-        }else{
+
+        } else {
             JOptionPane.showMessageDialog(null, "Lisäys epäonnistui", "Virhe", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
         // TODO add your handling code here:
-        
-        if(logiikka.suoritaKomento(3)){
+
+        if (logiikka.suoritaKomento(3)) {
             paivitaTable();
-            
-        }else{
+
+        } else {
             JOptionPane.showMessageDialog(null, "Tyhjennys epäonnistui", "Virhe", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // TODO add your handling code here:
-        
+
         logiikka.tallennaTila();
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
@@ -254,13 +267,30 @@ public class KalenteriGUI extends javax.swing.JFrame implements Runnable{
 
         } else {
             String[] paivat = {"ma", "ti", "ke", "to", "pe"};
-            jTextArea1.setText(logiikka.tulostaPaiva(paivat[jList2.getSelectedIndex()]));
+            DefaultListModel modeli = new DefaultListModel();
+
+            for (Merkinta tama : logiikka.getLista().getMap().get(paivat[jList2.getSelectedIndex()])) {
+                modeli.addElement(tama.getNimi() + " " + tama.getAika());
+
+            }
+            jList1.setModel(modeli);
         }
-        
     }//GEN-LAST:event_jList2ValueChanged
+
+    private void jList1ValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jList1ValueChanged
+        // TODO add your handling code here:
+        if (jList1.getSelectedIndex() == -1) {
+            jTextArea1.setText("");
+
+        } else {
+            String[] paivat = {"ma", "ti", "ke", "to", "pe"};
+            jTextArea1.setText(logiikka.getLista().getMap().get(paivat[jList2.getSelectedIndex()]).get(jList1.getSelectedIndex()).getKuvaus());
+        }
+    }//GEN-LAST:event_jList1ValueChanged
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JList jList1;
     private javax.swing.JList jList2;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
@@ -271,69 +301,69 @@ public class KalenteriGUI extends javax.swing.JFrame implements Runnable{
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextArea jTextArea1;
     // End of variables declaration//GEN-END:variables
 
-    
-    public class omaRenderoija extends DefaultTableCellRenderer{
+    public class omaRenderoija extends DefaultTableCellRenderer {
 
         @Override
-        public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column){
-            
+        public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+
             Component cell = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
             Merkintalista tulostettavat = logiikka.getLista();
             Map<String, List<Merkinta>> listaTulostettavista = tulostettavat.getMap();
             String[] paivat = {"ma", "ti", "ke", "to", "pe"};
-            
+
             for (int i = 1; i <= 5; i++) {
-                
-                if(column == i){
+
+                if (column == i) {
                     ArrayList<Integer> varjattavat = new ArrayList<>();
-                    
+
                     for (Merkinta tama : listaTulostettavista.get(paivat[i - 1])) {
                         lisaaAjatListaan(tama, varjattavat);
                         tulostaNimiTableen(tama, column);
                     }
-                    if(varjattavat.contains(row)){
+                    if (varjattavat.contains(row)) {
                         cell.setBackground(Color.red);
-                        
-                    }else{
+
+                    } else {
                         cell.setBackground(Color.white);
                         jTable1.setValueAt("", row, column);
                     }
-                        
+
                 }
             }
             return cell;
         }
-        
-        private void tulostaNimiTableen(Merkinta tama, int column){
+
+        private void tulostaNimiTableen(Merkinta tama, int column) {
 
             int[] aikaPurettuna = puraAika(tama);
             jTable1.setValueAt(tama.getNimi(), aikaPurettuna[0], column);
         }
 
-        private void lisaaAjatListaan(Merkinta tama, ArrayList<Integer> lista){
+        private void lisaaAjatListaan(Merkinta tama, ArrayList<Integer> lista) {
 
             int[] aikaPurettuna = puraAika(tama);
-            
+
             for (int i = aikaPurettuna[0]; i <= aikaPurettuna[1]; i++) {
-                lista.add(i); 
+                lista.add(i);
             }
         }
-        
-        private int[] puraAika(Merkinta tama){
-            
+
+        private int[] puraAika(Merkinta tama) {
+
             String aika = tama.getAika();
             String[] osat = aika.split("-");
-            
+
             int eka = Integer.parseInt(osat[0]);
             int toka = Integer.parseInt(osat[1]);
-            
+
             int[] palautettava = {eka - 8, toka - 8}; //Miinus 8 koska mukautetaan riveihin JTablessa.
-            
+
             return palautettava;
         }
     }

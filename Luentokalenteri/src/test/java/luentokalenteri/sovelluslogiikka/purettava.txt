@@ -1,2 +1,2 @@
-ma;OTM;1-2
-ti;samuli;tama
+ma;OTM;1-2;toimii
+ti;samuli;tama;testejä
