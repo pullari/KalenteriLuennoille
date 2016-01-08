@@ -29,12 +29,13 @@ public class Sovelluslogiikka {
     private List<Komento> komennot;
     private TiedostonLukija tiedostonLukija;
     private TiedostoonTallentaja tallentaja;
+    private File tiedosto;
 
     private String tiedostonNimi;     //TESTAAMISEN HELPOTTAMISEKSI
 
-    public Sovelluslogiikka(String nimi) {
+    public Sovelluslogiikka(File tiedosto) {
 
-        this.tiedostonNimi = nimi;
+        this.tiedosto = tiedosto;
         this.lista = new Merkintalista();
         this.komennot = new ArrayList<>();
         alustaTiedostonLukijaJaTallentaja();
@@ -120,9 +121,8 @@ public class Sovelluslogiikka {
     private boolean alustaTiedostonLukijaJaTallentaja() {
 
         try {
-            File tiedosto = new File(this.tiedostonNimi);
-            this.tiedostonLukija = new TiedostonLukija(tiedosto);
-            this.tallentaja = new TiedostoonTallentaja(tiedosto);
+            this.tiedostonLukija = new TiedostonLukija(this.tiedosto);
+            this.tallentaja = new TiedostoonTallentaja(this.tiedosto);
             return true;
 
         } catch (Exception e) {

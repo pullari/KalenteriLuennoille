@@ -43,8 +43,9 @@ public class SovelluslogiikkaTest {
 
         lista = new HashMap<>();
         alustaLista();
-        testaa = new Sovelluslogiikka("src/test/java/luentokalenteri/sovelluslogiikka/sovellusTesteille.txt");
         tiedosto = new File("src/test/java/luentokalenteri/sovelluslogiikka/sovellusTesteille.txt");
+        testaa = new Sovelluslogiikka(tiedosto);
+        
         
         try{
             lukija = new TiedostonLukija(tiedosto);
@@ -113,7 +114,8 @@ public class SovelluslogiikkaTest {
     @Test
     public void purkuToimii(){
         
-        Sovelluslogiikka purkuaVarten = new Sovelluslogiikka("src/test/java/luentokalenteri/sovelluslogiikka/purettava.txt");
+        File tiedosto = new File("src/test/java/luentokalenteri/sovelluslogiikka/purettava.txt");
+        Sovelluslogiikka purkuaVarten = new Sovelluslogiikka(tiedosto);
         alustaLista();
         
         purkuaVarten.puraTiedosto();
@@ -129,7 +131,8 @@ public class SovelluslogiikkaTest {
     @Test
     public void purkamattaEiToimi(){
         
-        Sovelluslogiikka purkuaVarten = new Sovelluslogiikka("src/test/java/luentokalenteri/sovelluslogiikka/purettava.txt");
+        File tiedosto = new File("src/test/java/luentokalenteri/sovelluslogiikka/purettava.txt");
+        Sovelluslogiikka purkuaVarten = new Sovelluslogiikka(tiedosto);
         alustaLista();
 
         purkuaVarten.suoritaKomento(4);

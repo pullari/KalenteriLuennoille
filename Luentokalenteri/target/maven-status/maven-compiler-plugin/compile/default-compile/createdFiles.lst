@@ -3,11 +3,13 @@ luentokalenteri\kayttojarjestelma\KalenteriGUI$omaRenderoija.class
 luentokalenteri\kayttojarjestelma\KalenteriGUI$3.class
 luentokalenteri\domain\komennot\Poista.class
 luentokalenteri\domain\komennot\Tulosta.class
+luentokalenteri\kayttojarjestelma\KalenteriGUI$11.class
 luentokalenteri\main\Main.class
 luentokalenteri\domain\komennot\Lisaa.class
 luentokalenteri\domain\lista\Merkinta.class
 luentokalenteri\kayttojarjestelma\KalenteriGUI$5.class
 luentokalenteri\kayttojarjestelma\KalenteriGUI$8.class
+luentokalenteri\kayttojarjestelma\KalenteriGUI$9.class
 luentokalenteri\kayttojarjestelma\KalenteriGUI$7.class
 luentokalenteri\domain\komennot\Tyhjenna.class
 luentokalenteri\kayttojarjestelma\KalenteriGUI$1.class
@@ -16,6 +18,7 @@ luentokalenteri\domain\komennot\Komento.class
 luentokalenteri\domain\tiedostonkasittelija\TiedostonLukija.class
 luentokalenteri\kayttojarjestelma\KalenteriGUI$6.class
 luentokalenteri\kayttojarjestelma\KalenteriGUI.class
+luentokalenteri\kayttojarjestelma\KalenteriGUI$10.class
 luentokalenteri\kayttojarjestelma\KalenteriGUI$2.class
 luentokalenteri\domain\lista\Merkintalista.class
 luentokalenteri\domain\tiedostonkasittelija\TiedostoonTallentaja.class

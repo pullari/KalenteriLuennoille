@@ -7,10 +7,12 @@ package luentokalenteri.kayttojarjestelma;
 
 import java.awt.Color;
 import java.awt.Component;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import javax.swing.DefaultListModel;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -29,17 +31,12 @@ public class KalenteriGUI extends javax.swing.JFrame implements Runnable {
      * Creates new form KalenteriForm
      */
     Sovelluslogiikka logiikka;
-
+    
     public KalenteriGUI() {
         initComponents();
-        logiikka = new Sovelluslogiikka("src/main/java/luentokalenteri/domain/lista/tallennustiedosto.txt");
-        
-        try{
-            logiikka.puraTiedosto();
-            
-        }catch(Exception e){
-            
-        }
+
+        logiikka = new Sovelluslogiikka(kysyTiedostoLoop());
+        logiikka.puraTiedosto();
         lisataanTallennusKunRaksiaPainetaan();
         paivitaTable();
     }
@@ -48,14 +45,35 @@ public class KalenteriGUI extends javax.swing.JFrame implements Runnable {
     public void run() {
 
         for (int i = 1; i < 6; i++) {
-            jTable1.getColumnModel().getColumn(i).setCellRenderer(new omaRenderoija());
+            kalenteriTable.getColumnModel().getColumn(i).setCellRenderer(new omaRenderoija());
 
         }
         this.pack();
         this.setVisible(true);
     }
 
-    public void lisataanTallennusKunRaksiaPainetaan() {
+    private File kysyTiedostoLoop(){
+        
+        final JFileChooser fc = new JFileChooser();
+        fc.showOpenDialog(null);
+        
+        if (fc.getSelectedFile() != null){
+            
+            String nimi = fc.getSelectedFile().getName();
+        
+            while (!nimi.substring(nimi.lastIndexOf("."), nimi.length()).equals(".txt")) {
+                fc.showOpenDialog(null);
+                nimi = fc.getSelectedFile().getName();
+
+            }
+            return fc.getSelectedFile();
+        }
+        
+        System.exit(0);
+        return null;
+    }
+    
+    private void lisataanTallennusKunRaksiaPainetaan() {
 
         java.awt.event.WindowAdapter ohitettuDefaultClose = new java.awt.event.WindowAdapter() {
 
@@ -70,8 +88,13 @@ public class KalenteriGUI extends javax.swing.JFrame implements Runnable {
 
     private void paivitaTable() {
 
-        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        DefaultTableModel model = (DefaultTableModel) kalenteriTable.getModel();
         model.fireTableDataChanged();
+    }
+    
+    private String getPaivat(int indeksi){
+        String[] paivat = {"ma", "ti", "ke", "to", "pe"};
+        return paivat[indeksi];
     }
 
     /**
@@ -83,30 +106,178 @@ public class KalenteriGUI extends javax.swing.JFrame implements Runnable {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        jList2 = new javax.swing.JList();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList();
+        lisaysDialog = new javax.swing.JDialog();
+        paivaLabel = new javax.swing.JLabel();
+        nimiLabel = new javax.swing.JLabel();
+        aikaLabel = new javax.swing.JLabel();
+        kuvausLabel = new javax.swing.JLabel();
+        lisaaKuvausPane = new javax.swing.JScrollPane();
+        lisaaKuvaus = new javax.swing.JTextArea();
+        lisaaPaiva = new java.awt.TextField();
+        lisaaNimi = new java.awt.TextField();
+        lisaaAika = new java.awt.TextField();
+        lisaysNappi = new javax.swing.JButton();
+        poistoDialog = new javax.swing.JDialog();
+        poistoPaivaLabel = new javax.swing.JLabel();
+        poistoNimiLabel = new javax.swing.JLabel();
+        poistoNimi = new java.awt.TextField();
+        poistoPaiva = new java.awt.TextField();
+        poistoButton = new javax.swing.JButton();
+        kuvausPane = new javax.swing.JScrollPane();
+        kuvausArea = new javax.swing.JTextArea();
+        kalenteriPane = new javax.swing.JScrollPane();
+        kalenteriTable = new javax.swing.JTable();
+        paivaPane = new javax.swing.JScrollPane();
+        paivaLista = new javax.swing.JList();
+        luennotPane = new javax.swing.JScrollPane();
+        luennotLista = new javax.swing.JList();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
+        fileMenu = new javax.swing.JMenu();
+        tallennaItem = new javax.swing.JMenuItem();
+        editMenu = new javax.swing.JMenu();
+        lisaaItem = new javax.swing.JMenuItem();
+        poistaItem = new javax.swing.JMenuItem();
+        tyhjennaItem = new javax.swing.JMenuItem();
+
+        lisaysDialog.setTitle("Lisäys");
+        lisaysDialog.setMinimumSize(new java.awt.Dimension(335, 315));
+        lisaysDialog.setPreferredSize(new java.awt.Dimension(340, 200));
+
+        paivaLabel.setText("Päivä (ma, ti, ke, to, pe):");
+
+        nimiLabel.setText("Nimi (Ei puolipisteitä):");
+
+        aikaLabel.setText("Aika (esim. 12-14):");
+
+        kuvausLabel.setText("Kuvaus:");
+
+        lisaaKuvaus.setColumns(20);
+        lisaaKuvaus.setRows(5);
+        lisaaKuvausPane.setViewportView(lisaaKuvaus);
+
+        lisaaAika.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                lisaaAikaActionPerformed(evt);
+            }
+        });
+
+        lisaysNappi.setText("Lisää");
+        lisaysNappi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                lisaysNappiActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout lisaysDialogLayout = new javax.swing.GroupLayout(lisaysDialog.getContentPane());
+        lisaysDialog.getContentPane().setLayout(lisaysDialogLayout);
+        lisaysDialogLayout.setHorizontalGroup(
+            lisaysDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(lisaysDialogLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(lisaysDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(lisaysDialogLayout.createSequentialGroup()
+                        .addGroup(lisaysDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(lisaaKuvausPane)
+                            .addGroup(lisaysDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(kuvausLabel)
+                                .addGroup(lisaysDialogLayout.createSequentialGroup()
+                                    .addGroup(lisaysDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(aikaLabel)
+                                        .addComponent(paivaLabel)
+                                        .addComponent(nimiLabel))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addGroup(lisaysDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(lisaysDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(lisaaNimi, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(lisaaPaiva, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(lisaaAika, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, lisaysDialogLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(lisaysNappi)))
+                .addContainerGap())
+        );
+        lisaysDialogLayout.setVerticalGroup(
+            lisaysDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(lisaysDialogLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(lisaysDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(lisaysDialogLayout.createSequentialGroup()
+                        .addGroup(lisaysDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(paivaLabel)
+                            .addComponent(lisaaPaiva, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(lisaysDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(nimiLabel)
+                            .addComponent(lisaaNimi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(16, 16, 16)
+                        .addComponent(aikaLabel))
+                    .addComponent(lisaaAika, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(22, 22, 22)
+                .addComponent(kuvausLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lisaaKuvausPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lisaysNappi)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        poistoDialog.setTitle("Poisto");
+        poistoDialog.setMinimumSize(new java.awt.Dimension(320, 150));
+
+        poistoPaivaLabel.setText("Päivä (ma, ti, ke, to, pe):");
+
+        poistoNimiLabel.setText("Poistettavan nimi:");
+
+        poistoButton.setText("Poista");
+        poistoButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                poistoButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout poistoDialogLayout = new javax.swing.GroupLayout(poistoDialog.getContentPane());
+        poistoDialog.getContentPane().setLayout(poistoDialogLayout);
+        poistoDialogLayout.setHorizontalGroup(
+            poistoDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(poistoDialogLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(poistoDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(poistoButton, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, poistoDialogLayout.createSequentialGroup()
+                        .addGroup(poistoDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(poistoNimiLabel)
+                            .addComponent(poistoPaivaLabel))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(poistoDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(poistoPaiva, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(poistoNimi, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap())
+        );
+        poistoDialogLayout.setVerticalGroup(
+            poistoDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(poistoDialogLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(poistoDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(poistoPaiva, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(poistoPaivaLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(poistoDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(poistoNimiLabel)
+                    .addComponent(poistoNimi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(poistoButton)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Kalenteri");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        kuvausArea.setColumns(20);
+        kuvausArea.setRows(5);
+        kuvausPane.setViewportView(kuvausArea);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        kalenteriTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {"08:00", null, null, null, null, null},
                 {"09:00", null, null, null, null, null},
@@ -126,66 +297,66 @@ public class KalenteriGUI extends javax.swing.JFrame implements Runnable {
                 "klo", "Maanantai", "Tiistai", "Keskiviikko", "Torstai", "Perjantai"
             }
         ));
-        jScrollPane2.setViewportView(jTable1);
+        kalenteriPane.setViewportView(kalenteriTable);
 
-        jList2.setModel(new javax.swing.AbstractListModel() {
+        paivaLista.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Maanantai", "Tiistai", "Keskiviikko", "Torstai", "Perjantai" };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
-        jList2.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+        paivaLista.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
             public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
-                jList2ValueChanged(evt);
+                paivaListaValueChanged(evt);
             }
         });
-        jScrollPane4.setViewportView(jList2);
+        paivaPane.setViewportView(paivaLista);
 
-        jList1.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+        luennotLista.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
             public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
-                jList1ValueChanged(evt);
+                luennotListaValueChanged(evt);
             }
         });
-        jScrollPane3.setViewportView(jList1);
+        luennotPane.setViewportView(luennotLista);
 
-        jMenu1.setText("File");
+        fileMenu.setText("File");
 
-        jMenuItem1.setText("Tallenna");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        tallennaItem.setText("Tallenna");
+        tallennaItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                tallennaItemActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem1);
+        fileMenu.add(tallennaItem);
 
-        jMenuBar1.add(jMenu1);
+        jMenuBar1.add(fileMenu);
 
-        jMenu2.setText("Edit");
+        editMenu.setText("Edit");
 
-        jMenuItem2.setText("Lisää");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+        lisaaItem.setText("Lisää");
+        lisaaItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
+                lisaaItemActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem2);
+        editMenu.add(lisaaItem);
 
-        jMenuItem3.setText("Poista");
-        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+        poistaItem.setText("Poista");
+        poistaItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem3ActionPerformed(evt);
+                poistaItemActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem3);
+        editMenu.add(poistaItem);
 
-        jMenuItem4.setText("Tyhjennä");
-        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+        tyhjennaItem.setText("Tyhjennä");
+        tyhjennaItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem4ActionPerformed(evt);
+                tyhjennaItemActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem4);
+        editMenu.add(tyhjennaItem);
 
-        jMenuBar1.add(jMenu2);
+        jMenuBar1.add(editMenu);
 
         setJMenuBar(jMenuBar1);
 
@@ -195,11 +366,11 @@ public class KalenteriGUI extends javax.swing.JFrame implements Runnable {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(paivaPane, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(luennotPane, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(kalenteriPane, javax.swing.GroupLayout.DEFAULT_SIZE, 464, Short.MAX_VALUE))
+            .addComponent(kuvausPane)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -207,23 +378,94 @@ public class KalenteriGUI extends javax.swing.JFrame implements Runnable {
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(paivaPane, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                        .addComponent(luennotPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(kalenteriPane, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(kuvausPane, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(13, 13, 13))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+    private void poistaItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_poistaItemActionPerformed
+        // TODO add your handling code here:
+        poistoDialog.setVisible(true);
+    }//GEN-LAST:event_poistaItemActionPerformed
 
-        String paiva = JOptionPane.showInputDialog("Anna paiva (ma, ti, ke, to, pe)");
-        String nimi = JOptionPane.showInputDialog("Anna nimi (ei puolipisteitä)");
+    private void lisaaItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lisaaItemActionPerformed
+        // TODO add your handling code here:
+        lisaysDialog.setVisible(true);
+    }//GEN-LAST:event_lisaaItemActionPerformed
 
+    private void tyhjennaItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tyhjennaItemActionPerformed
+        // TODO add your handling code here:
+        if (logiikka.suoritaKomento(3)) {
+            paivitaTable();
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Tyhjennys epäonnistui", "Virhe", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_tyhjennaItemActionPerformed
+
+    private void tallennaItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tallennaItemActionPerformed
+        // TODO add your handling code here:
+
+        logiikka.tallennaTila();
+    }//GEN-LAST:event_tallennaItemActionPerformed
+
+    private void paivaListaValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_paivaListaValueChanged
+        // TODO add your handling code here:
+        if (paivaLista.getSelectedIndex() == -1) {
+
+        } else {
+            DefaultListModel modeli = new DefaultListModel();
+
+            for (Merkinta tama : logiikka.getLista().getMap().get(getPaivat(paivaLista.getSelectedIndex()))) {
+                modeli.addElement(tama.getNimi() + " " + tama.getAika());
+
+            }
+            luennotLista.setModel(modeli);
+        }
+    }//GEN-LAST:event_paivaListaValueChanged
+
+    private void luennotListaValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_luennotListaValueChanged
+        // TODO add your handling code here:
+        if (luennotLista.getSelectedIndex() == -1) {
+            kuvausArea.setText("");
+
+        } else {
+            kuvausArea.setText(logiikka.getLista().getMap().get(getPaivat(paivaLista.getSelectedIndex())).get(luennotLista.getSelectedIndex()).getKuvaus());
+        }
+    }//GEN-LAST:event_luennotListaValueChanged
+
+    private void lisaaAikaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lisaaAikaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lisaaAikaActionPerformed
+
+    private void lisaysNappiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lisaysNappiActionPerformed
+        // TODO add your handling code here:
+        String paiva = lisaaPaiva.getText();
+        String nimi = lisaaNimi.getText();
+        String aika = lisaaAika.getText();
+        String kuvaus = lisaaKuvaus.getText();
+        
+        if (logiikka.suoritaKomento(1, paiva, nimi, aika, kuvaus)) {
+            paivitaTable();
+            
+        } else {
+            lisaysDialog.dispose();
+            JOptionPane.showMessageDialog(null, "Lisäys epäonnistui", "Virhe", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_lisaysNappiActionPerformed
+
+    private void poistoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_poistoButtonActionPerformed
+        // TODO add your handling code here:
+        String paiva = poistoPaiva.getText();
+        String nimi = poistoNimi.getText();
+        
         if (logiikka.suoritaKomento(2, paiva, nimi)) {
             paivitaTable();
 
@@ -231,86 +473,42 @@ public class KalenteriGUI extends javax.swing.JFrame implements Runnable {
             JOptionPane.showMessageDialog(null, "Poisto epäonnistui", "Virhe", JOptionPane.ERROR_MESSAGE);
 
         }
-
-    }//GEN-LAST:event_jMenuItem3ActionPerformed
-
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        // TODO add your handling code here:
-
-        String paiva = JOptionPane.showInputDialog("Anna paiva (ma, ti, ke, to, pe)");
-        String nimi = JOptionPane.showInputDialog("Anna nimi (ei puolipisteitä)");
-        String aika = JOptionPane.showInputDialog("Anna aika (esim. 12-14)");
-        String kuvaus = JOptionPane.showInputDialog("Anna lisätietoja jos haluat");
-
-        if (logiikka.suoritaKomento(1, paiva, nimi, aika, kuvaus)) {
-            paivitaTable();
-
-        } else {
-            JOptionPane.showMessageDialog(null, "Lisäys epäonnistui", "Virhe", JOptionPane.ERROR_MESSAGE);
-        }
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
-
-    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-        // TODO add your handling code here:
-
-        if (logiikka.suoritaKomento(3)) {
-            paivitaTable();
-
-        } else {
-            JOptionPane.showMessageDialog(null, "Tyhjennys epäonnistui", "Virhe", JOptionPane.ERROR_MESSAGE);
-        }
-    }//GEN-LAST:event_jMenuItem4ActionPerformed
-
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        // TODO add your handling code here:
-
-        logiikka.tallennaTila();
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
-
-    private void jList2ValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jList2ValueChanged
-        // TODO add your handling code here:
-        if (jList2.getSelectedIndex() == -1) {
-
-        } else {
-            String[] paivat = {"ma", "ti", "ke", "to", "pe"};
-            DefaultListModel modeli = new DefaultListModel();
-
-            for (Merkinta tama : logiikka.getLista().getMap().get(paivat[jList2.getSelectedIndex()])) {
-                modeli.addElement(tama.getNimi() + " " + tama.getAika());
-
-            }
-            jList1.setModel(modeli);
-        }
-    }//GEN-LAST:event_jList2ValueChanged
-
-    private void jList1ValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jList1ValueChanged
-        // TODO add your handling code here:
-        if (jList1.getSelectedIndex() == -1) {
-            jTextArea1.setText("");
-
-        } else {
-            String[] paivat = {"ma", "ti", "ke", "to", "pe"};
-            jTextArea1.setText(logiikka.getLista().getMap().get(paivat[jList2.getSelectedIndex()]).get(jList1.getSelectedIndex()).getKuvaus());
-        }
-    }//GEN-LAST:event_jList1ValueChanged
+    }//GEN-LAST:event_poistoButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JList jList1;
-    private javax.swing.JList jList2;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
+    private javax.swing.JLabel aikaLabel;
+    private javax.swing.JMenu editMenu;
+    private javax.swing.JMenu fileMenu;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JScrollPane kalenteriPane;
+    private javax.swing.JTable kalenteriTable;
+    private javax.swing.JTextArea kuvausArea;
+    private javax.swing.JLabel kuvausLabel;
+    private javax.swing.JScrollPane kuvausPane;
+    private java.awt.TextField lisaaAika;
+    private javax.swing.JMenuItem lisaaItem;
+    private javax.swing.JTextArea lisaaKuvaus;
+    private javax.swing.JScrollPane lisaaKuvausPane;
+    private java.awt.TextField lisaaNimi;
+    private java.awt.TextField lisaaPaiva;
+    private javax.swing.JDialog lisaysDialog;
+    private javax.swing.JButton lisaysNappi;
+    private javax.swing.JList luennotLista;
+    private javax.swing.JScrollPane luennotPane;
+    private javax.swing.JLabel nimiLabel;
+    private javax.swing.JLabel paivaLabel;
+    private javax.swing.JList paivaLista;
+    private javax.swing.JScrollPane paivaPane;
+    private javax.swing.JMenuItem poistaItem;
+    private javax.swing.JButton poistoButton;
+    private javax.swing.JDialog poistoDialog;
+    private java.awt.TextField poistoNimi;
+    private javax.swing.JLabel poistoNimiLabel;
+    private java.awt.TextField poistoPaiva;
+    private javax.swing.JLabel poistoPaivaLabel;
+    private javax.swing.JMenuItem tallennaItem;
+    private javax.swing.JMenuItem tyhjennaItem;
     // End of variables declaration//GEN-END:variables
 
     public class omaRenderoija extends DefaultTableCellRenderer {
@@ -321,23 +519,26 @@ public class KalenteriGUI extends javax.swing.JFrame implements Runnable {
             Component cell = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
             Merkintalista tulostettavat = logiikka.getLista();
             Map<String, List<Merkinta>> listaTulostettavista = tulostettavat.getMap();
-            String[] paivat = {"ma", "ti", "ke", "to", "pe"};
 
             for (int i = 1; i <= 5; i++) {
 
                 if (column == i) {
                     ArrayList<Integer> varjattavat = new ArrayList<>();
 
-                    for (Merkinta tama : listaTulostettavista.get(paivat[i - 1])) {
+                    for (Merkinta tama : listaTulostettavista.get(getPaivat(i - 1))) {
                         lisaaAjatListaan(tama, varjattavat);
                         tulostaNimiTableen(tama, column);
                     }
                     if (varjattavat.contains(row)) {
                         cell.setBackground(Color.red);
-
+                        
+                        if (row != varjattavat.get(0)) {
+                            kalenteriTable.setValueAt("", row, column);
+                        }
+                        
                     } else {
                         cell.setBackground(Color.white);
-                        jTable1.setValueAt("", row, column);
+                        kalenteriTable.setValueAt("", row, column);
                     }
 
                 }
@@ -348,14 +549,14 @@ public class KalenteriGUI extends javax.swing.JFrame implements Runnable {
         private void tulostaNimiTableen(Merkinta tama, int column) {
 
             int[] aikaPurettuna = puraAika(tama);
-            jTable1.setValueAt(tama.getNimi(), aikaPurettuna[0], column);
+            kalenteriTable.setValueAt(tama.getNimi(), aikaPurettuna[0], column);
         }
 
         private void lisaaAjatListaan(Merkinta tama, ArrayList<Integer> lista) {
 
             int[] aikaPurettuna = puraAika(tama);
 
-            for (int i = aikaPurettuna[0]; i <= aikaPurettuna[1]; i++) {
+            for (int i = aikaPurettuna[0]; i < aikaPurettuna[1]; i++) {
                 lista.add(i);
             }
         }

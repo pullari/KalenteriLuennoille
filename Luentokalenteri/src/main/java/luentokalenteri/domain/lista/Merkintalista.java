@@ -83,9 +83,23 @@ public class Merkintalista {
         if (!this.lista.keySet().contains(paiva)) {
             return false;
 
-        } else if (this.lista.get(paiva).add(lisattava)) {
+        } else if (tarkistaLoytyykoJo(paiva, lisattava)) {
             return true;
 
+        }else if (this.lista.get(paiva).add(lisattava)) {
+            return true;
+            
+        }
+        return false;
+    }
+    
+    private boolean tarkistaLoytyykoJo(String paiva, Merkinta tama){
+        
+        for (Merkinta listassa : this.lista.get(paiva)) {
+            
+            if (listassa.getNimi().equals(tama.getNimi()) && listassa.getAika().equals(tama.getAika())) {
+                return true;
+            }
         }
         return false;
     }
