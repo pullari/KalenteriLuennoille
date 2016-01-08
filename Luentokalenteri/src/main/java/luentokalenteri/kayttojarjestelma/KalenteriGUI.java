@@ -34,7 +34,6 @@ public class KalenteriGUI extends javax.swing.JFrame implements Runnable {
     
     public KalenteriGUI() {
         initComponents();
-
         logiikka = new Sovelluslogiikka(kysyTiedostoLoop());
         logiikka.puraTiedosto();
         lisataanTallennusKunRaksiaPainetaan();
