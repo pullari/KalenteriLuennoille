@@ -1,1 +1,0 @@
-Heti k‰ynnistett‰ess‰ ohjelma pyyt‰‰ tiedostoa. T‰m‰n tulee olla valmiiksi luotu .txt tiedosto miss‰ vain tietokoneellasi.
