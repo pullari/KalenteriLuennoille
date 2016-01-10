@@ -5,3 +5,5 @@ Kalenterin lukemisesta tulee ymmärtää se, että jokaisessa sarakkeessa, jossa on 
 Komennot löytyvät menu valikosta Edit-alavalikosta. Ne avaavat oman ruutunsa johon tiedot syötetään ja painetaan joko lisää tai poista painiketta. Kun merkintöjä on lisännyt tarpeeksi voi tämän ruudun vain sulkea.
 
 File alavalikosta löytyy ”Tallenna”-nappi. Tämän käyttö ei kuitenkaan ole tällä hetkellä täysin pakollista, sillä ohjelma automaattisesti tallentaa kaikki merkinnät aina kun sen sulkee ruksista.
+
+Vasemmalla olevista valikoista voi ylimmästä valita päivän ja alempaan ilmestyy sen päivän merkinnät. Alemmasta valikosta kun valitset merkinnän näet alimmassa ja isoimmassa tekstilaatikossa kyseisen merkinnän tarkennetun kuvauksen.

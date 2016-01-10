@@ -15,3 +15,4 @@ Päivämäärä / Käytetyt tunnit / Ajankäytön kohde
 * 5.1.2016 / 2 tuntia / lisätty tarkistus, että merkinnän nimi ei sisällä puolipisteitä, sekä nimet kalenteriin ja uusi testi. Bugi-testausta
 * 7.1.2016 / 1 tunti / Lisätty "kuvaus" ominaisuus merkintöihin ja muokattu GUI:a
 * 8.1.2016 / 3 tuntia / Isoja GUI päivityksiä ja bugikorjailuja
+* 10.1.2016 / 2 tuntia / Bugitestausta ja dokumentaation viimeistelyä
